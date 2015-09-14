@@ -47,7 +47,7 @@ end
 
 gem 'devise'
 
-gem 'rspec'
+gem "rspec-rails"
 
 gem 'factory_girl'
 
