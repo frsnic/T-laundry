@@ -14,31 +14,25 @@ users = [{
     password_confirmation: 'adminadmin',
     name: 'admin',
     role: User.roles["admin"]
-  },{
+  }, {
     email: 'group@gmail.com',
     password: 'groupgroup',
     password_confirmation: 'groupgroup',
     name: 'group_manager',
     role: User.roles["group_manager"]
-  },{
+  }, {
     email: 'store@gmail.com',
     password: 'storestore',
     password_confirmation: 'storestore',
     name: 'store_manager',
     role: User.roles["store_manager"]
-  },{
-    email: 'sales@gmail.com',
-    password: 'salessales',
-    password_confirmation: 'salessales',
-    name: 'sales',
-    role: User.roles["sales"]
-  },{
+  }, {
     email: 'client@gmail.com',
     password: 'clientclient',
     password_confirmation: 'clientclient',
     name: 'client',
     role: User.roles["client"]
-  },{
+  }, {
     email: 'frsnic@gmail.com',
     password: 'frsnicfrsnic',
     password_confirmation: 'frsnicfrsnic',

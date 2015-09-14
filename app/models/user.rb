@@ -8,7 +8,7 @@ class User < ActiveRecord::Base
 
   validates :name, presence: true
 
-  enum role: [:admin, :group_manager, :store_manager, :sales, :client]
+  enum role: [:admin, :group_manager, :store_manager, :client]
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role
