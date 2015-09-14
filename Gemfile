@@ -49,6 +49,8 @@ gem 'devise'
 
 gem "rspec-rails"
 
-gem 'factory_girl'
+gem 'factory_girl_rails'
 
 gem 'bootstrap-sass'
+
+gem 'pundit'
