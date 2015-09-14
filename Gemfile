@@ -54,3 +54,5 @@ gem 'factory_girl_rails'
 gem 'bootstrap-sass'
 
 gem 'pundit'
+
+gem 'simple_form'
