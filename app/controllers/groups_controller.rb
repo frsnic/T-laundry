@@ -23,10 +23,12 @@ class GroupsController < ApplicationController
 
   def edit
     @group = current_user.groups.find(params[:id])
+    authorize @group
   end
 
   def update
     @group = current_user.groups.find(params[:id])
+    authorize @group
 
     if @group.update(group_params)
       redirect_to account_groups_path, notice: "修改群組成功"
