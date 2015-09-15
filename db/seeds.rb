@@ -47,8 +47,6 @@ groups = [{
     title: 'frsnic group'
   }, {
     title: 'a group'
-  }, {
-    title: 'b group'
   }
 ]
 
@@ -59,3 +57,26 @@ GroupUser.create!({
     group_id: Group.find_by_title('frsnic group').id
   }
 )
+
+stores = [{
+    title: 'frsnic store',
+    group_id: Group.find_by_title('frsnic group').id,
+    user_id: User.find_by_name('frsnic').id,
+  }, {
+    title: 'frsnic store 2',
+    group_id: Group.find_by_title('frsnic group').id,
+    user_id: User.find_by_name('frsnic').id,
+  }, {
+    title: 'a store',
+    group_id: Group.find_by_title('a group').id
+  }
+]
+
+stores = stores.each do |store|
+  Store.create!(store.except(:user_id))
+  StoreUser.create!({
+      user_id: store[:user_id],
+      store_id: Store.find_by_title(store[:title]).id
+    }
+  ) if store[:user_id]
+end
