@@ -38,6 +38,14 @@ class ApplicationPolicy
     Pundit.policy_scope!(user, record.class)
   end
 
+  def admin?
+    user.admin?
+  end
+
+  def manager?
+    user.admin? or user.group_manager? or user.store_manager?
+  end
+
   class Scope
     attr_reader :user, :scope
 
@@ -49,5 +57,7 @@ class ApplicationPolicy
     def resolve
       scope
     end
+
   end
+
 end

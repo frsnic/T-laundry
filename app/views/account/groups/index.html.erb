@@ -1,6 +1,6 @@
 <div class="col-md-12">
   <div class="group">
-    <% if policy(:group).edit? %>
+    <% if policy(:group).admin? %>
       <%= link_to("New group", new_group_path, class: "btn btn-primary pull-right") %>
     <% end %>
   </div>
@@ -17,7 +17,7 @@
           <td><%= index + 1 %></td>
           <td><%= link_to(truncate(group.title, length: 15), group_path(group)) %></td>
           <td>
-            <% if policy(:group).edit? %>
+            <% if policy(:group).admin? %>
               <%= link_to("Edit", edit_group_path(group), class: "btn btn-sm btn-default") %>
               <%= link_to("Delete", group_path(group),    class: "btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?" } )%>
             <% end %>
