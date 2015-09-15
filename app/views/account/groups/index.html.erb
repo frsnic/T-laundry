@@ -14,10 +14,10 @@
       <% @groups.each do |group| %>
         <tr>
           <td>#</td>
-          <td><%= link_to(truncate(group.title, length: 15), account_group_path(group)) %></td>
+          <td><%= link_to(truncate(group.title, length: 15), group_path(group)) %></td>
           <td>
-            <%= link_to("Edit", edit_account_group_path(group), class: "btn btn-sm btn-default")%>
-            <%= link_to("Delete", account_group_path(group),    class: "btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?" } )%>
+            <%= link_to("Edit", edit_group_path(group), class: "btn btn-sm btn-default")%>
+            <%= link_to("Delete", group_path(group),    class: "btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?" } )%>
           </td>
         </tr>
       <% end %>

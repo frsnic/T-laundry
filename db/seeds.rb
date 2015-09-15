@@ -45,6 +45,10 @@ users = users.each { |user| User.create!(user) }
 
 groups = [{
     title: 'frsnic group'
+  }, {
+    title: 'a group'
+  }, {
+    title: 'b group'
   }
 ]
 
