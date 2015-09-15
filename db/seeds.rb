@@ -33,43 +33,51 @@ users = [{
     name: 'client',
     role: User.roles["client"]
   }, {
-    email: 'frsnic@gmail.com',
-    password: 'frsnicfrsnic',
-    password_confirmation: 'frsnicfrsnic',
-    name: 'frsnic',
+    email: 'frsnicg@gmail.com',
+    password: 'frsnicgfrsnicg',
+    password_confirmation: 'frsnicgfrsnicg',
+    name: 'frsnicg',
     role: User.roles["group_manager"]
-  },
+  }, {
+    email: 'frsnics@gmail.com',
+    password: 'frsnicsfrsnics',
+    password_confirmation: 'frsnicsfrsnics',
+    name: 'frsnics',
+    role: User.roles["store_manager"]
+  }
 ]
 
 users = users.each { |user| User.create!(user) }
 
 groups = [{
-    title: 'frsnic group'
+    title: 'frsnic group',
+    user_id: User.find_by_name('frsnicg').id,
   }, {
     title: 'a group'
   }
 ]
 
-groups = groups.each { |group| Group.create!(group) }
-
-GroupUser.create!({
-    user_id: User.find_by_name('frsnic').id,
-    group_id: Group.find_by_title('frsnic group').id
-  }
-)
+groups = groups.each do |group|
+  Group.create!(group.except(:user_id))
+  GroupUser.create!({
+      user_id: group[:user_id],
+      group_id: Group.find_by_title(group[:title]).id
+    }
+  ) if group[:user_id]
+end
 
 stores = [{
-    title: 'frsnic store',
+    title: 'frsnicg store',
     group_id: Group.find_by_title('frsnic group').id,
-    user_id: User.find_by_name('frsnic').id,
+    user_id: User.find_by_name('frsnicg').id,
   }, {
-    title: 'frsnic store 2',
+    title: 'frsnics store',
     group_id: Group.find_by_title('frsnic group').id,
-    user_id: User.find_by_name('frsnic').id,
+    user_id: User.find_by_name('frsnics').id,
   }, {
     title: 'a store',
     group_id: Group.find_by_title('a group').id
-  }
+  },
 ]
 
 stores = stores.each do |store|
