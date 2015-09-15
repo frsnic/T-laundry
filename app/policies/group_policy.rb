@@ -1,19 +1,28 @@
 class GroupPolicy < ApplicationPolicy
-  class Scope < Scope
-    attr_reader :user, :group
 
+  def new?
+    create?
+  end
+
+  def create?
+    user.admin?
+  end
+
+  def edit?
+    update?
+  end
+
+  def update?
+    user.admin?
+  end
+
+  def destroy?
+    user.admin?
+  end
+
+  class Scope < Scope
     def resolve
       scope
     end
-
-    def initialize(user, group)
-      @user  = user
-      @group = group
-    end
-
-    def edit?
-      user.admin?
-    end
-
   end
 end

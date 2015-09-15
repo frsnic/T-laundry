@@ -9,10 +9,12 @@ class GroupsController < ApplicationController
 
   def new
     @group = Group.new
+    authorize @group
   end
 
   def create
     @group = current_user.groups.new(group_params)
+    authorize @group
 
     if @group.save
       redirect_to account_groups_path, notice: '新增群組成功'

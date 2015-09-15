@@ -1,23 +1,26 @@
 <div class="col-md-12">
   <div class="group">
-    <%= link_to("New group", new_group_path, class: "btn btn-primary pull-right") %>
+    <% if policy(:group).edit? %>
+      <%= link_to("New group", new_group_path, class: "btn btn-primary pull-right") %>
+    <% end %>
   </div>
   <table class="table table-hover">
     <thead>
       <tr>
         <td>#</td>
         <td>Title</td>
-        <td>Description</td>
       </tr>
     </thead>
     <tbody>
-      <% @groups.each do |group| %>
+      <% @groups.each_with_index do |group, index| %>
         <tr>
-          <td>#</td>
+          <td><%= index + 1 %></td>
           <td><%= link_to(truncate(group.title, length: 15), group_path(group)) %></td>
           <td>
-            <%= link_to("Edit", edit_group_path(group), class: "btn btn-sm btn-default")%>
-            <%= link_to("Delete", group_path(group),    class: "btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?" } )%>
+            <% if policy(:group).edit? %>
+              <%= link_to("Edit", edit_group_path(group), class: "btn btn-sm btn-default") %>
+              <%= link_to("Delete", group_path(group),    class: "btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?" } )%>
+            <% end %>
           </td>
         </tr>
       <% end %>
