@@ -1,7 +1,10 @@
 <div class="col-md-12">
   <div class="group">
-    <% if policy(:group).edit? %>
+    <% if policy(:group).admin? %>
       <%= link_to("Edit", edit_group_path(@group), class: "btn btn-primary pull-right")%>
+    <% end %>
+    <% if policy(:group).group_manager? %>
+      <%= link_to("New Store", new_group_store_path(@group, @store), class: "btn btn-success pull-right")%>
     <% end %>
   </div>
   <h2><%= @group.title %></h2>

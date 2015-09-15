@@ -1,0 +1,8 @@
+<div class="col-md-12">
+  <div class="store">
+    <% if policy(:store).group_manager? %>
+      <%= link_to("Edit", edit_group_store_path(@group, @store), class: "btn btn-primary pull-right")%>
+    <% end %>
+  </div>
+  <h2><%= @store.title %></h2>
+</div>

@@ -1,0 +1,30 @@
+<div class="col-md-12">
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>#</td>
+        <td>Title</td>
+        <td>Group</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% index = 1 %>
+      <% @groups.each do |group| %>
+        <% group.stores.each do |store| %>
+          <tr>
+            <td><%= index %></td>
+            <td><%= link_to(truncate(store.title, length: 15), group_store_path(group, store)) %></td>
+            <td><%= title_with_link(group.title, 15, policy(:group).group_manager?,group_path(group)) %></td>
+            <td>
+              <% if policy(:store).group_manager? %>
+                <%= link_to("Edit", edit_group_store_path(group, store), class: "btn btn-sm btn-default") %>
+                <%= link_to("Delete", group_store_path(group, store),    class: "btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?" } )%>
+              <% end %>
+            </td>
+            <% index = index + 1 %>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

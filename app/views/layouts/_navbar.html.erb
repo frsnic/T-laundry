@@ -22,6 +22,9 @@
               <% if policy(:group).manager? %>
                 <li> <%= link_to("My Groups", account_groups_path) %></li>
               <% end %>
+              <% if policy(:store).manager? %>
+                <li> <%= link_to("My Stores", account_stores_path) %></li>
+              <% end %>
               <li> <%= link_to("登出", destroy_user_session_path, method: :delete) %> </li>
             </ul>
           </li>

@@ -46,6 +46,10 @@ class ApplicationPolicy
     user.admin? or user.group_manager? or user.store_manager?
   end
 
+  def group_manager?
+    user.admin? or user.group_manager?
+  end
+
   class Scope
     attr_reader :user, :scope
 

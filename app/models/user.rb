@@ -3,9 +3,9 @@ class User < ActiveRecord::Base
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable
 
-  has_many :group_users
+  has_many :group_users, dependent: :destroy
   has_many :groups, through: :group_users, source: :group
-  has_many :store_users
+  has_many :store_users, dependent: :destroy
   has_many :stores, through: :store_users, source: :store
 
   validates :name, presence: true

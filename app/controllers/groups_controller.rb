@@ -17,7 +17,7 @@ class GroupsController < ApplicationController
     if @group.save
       redirect_to account_groups_path, notice: '新增群組成功'
     else
-      render :account_new
+      render :new
     end
   end
 
@@ -31,7 +31,7 @@ class GroupsController < ApplicationController
     if @group.update(group_params)
       redirect_to account_groups_path, notice: "修改群組成功"
     else
-      render :account_edit
+      render :edit
     end
   end
 
