@@ -1,6 +1,6 @@
 module ApplicationHelper
 
-  def title_with_link(title, length, need_link, link)
+  def link_or_title(title, length, need_link, link)
     title = truncate(title, length: length)
     if need_link
       link_to(title, link)

@@ -1,10 +1,11 @@
 class StoresController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_manager!
+  before_action :authorize_group_manager!, only: [:new, :create, :destroy]
   before_action :find_group
 
   def show
-    @store = @group.stores.find(params[:id])
+    @store = policy_scope(Store).find(params[:id])
   end
 
   def new
@@ -12,7 +13,7 @@ class StoresController < ApplicationController
   end
 
   def create
-    @store = @group.stores.new(store_params)
+    @store = @group.stores.build(store_params)
 
     if @store.save
       redirect_to account_stores_path, notice: '新增商店成功'
@@ -22,11 +23,11 @@ class StoresController < ApplicationController
   end
 
   def edit
-    @store = @group.stores.find(params[:id])
+    @store = policy_scope(Store).find(params[:id])
   end
 
   def update
-    @store = @group.stores.find(params[:id])
+    @store = policy_scope(Store).find(params[:id])
 
     if @store.update(store_params)
       redirect_to account_stores_path, notice: "修改商店成功"
@@ -36,7 +37,7 @@ class StoresController < ApplicationController
   end
 
   def destroy
-    @store = @group.stores.find(params[:id])
+    @store = policy_scope(Store).find(params[:id])
 
     @store.destroy
     redirect_to account_stores_path, alert: "商店已刪除"
@@ -49,7 +50,7 @@ class StoresController < ApplicationController
   end
 
   def find_group
-    @group = Group.find(params[:group_id])
+    @group = policy_scope(Group).find(params[:group_id])
   end
 
 end

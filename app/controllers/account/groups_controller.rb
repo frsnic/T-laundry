@@ -7,7 +7,4 @@ class Account::GroupsController < ApplicationController
     @groups = policy_scope(Group)
   end
 
-  def stores
-  end
-
 end

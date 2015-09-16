@@ -23,4 +23,8 @@ class ApplicationController < ActionController::Base
     authorize Group, :manager?
   end
 
+  def authorize_group_manager!
+    authorize Group, :group_manager?
+  end
+
 end

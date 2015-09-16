@@ -8,22 +8,18 @@
       </tr>
     </thead>
     <tbody>
-      <% index = 1 %>
-      <% @groups.each do |group| %>
-        <% group.stores.each do |store| %>
-          <tr>
-            <td><%= index %></td>
-            <td><%= link_to(truncate(store.title, length: 15), group_store_path(group, store)) %></td>
-            <td><%= title_with_link(group.title, 15, policy(:group).group_manager?,group_path(group)) %></td>
-            <td>
-              <% if policy(:store).group_manager? %>
-                <%= link_to("Edit", edit_group_store_path(group, store), class: "btn btn-sm btn-default") %>
-                <%= link_to("Delete", group_store_path(group, store),    class: "btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?" } )%>
-              <% end %>
-            </td>
-            <% index = index + 1 %>
-          </tr>
-        <% end %>
+      <% @stores.each_with_index do |store, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= link_to(truncate(store.title, length: 15), group_store_path(store.group, store)) %></td>
+          <td><%= link_or_title(store.group.title, 15, policy(:group).group_manager?,group_path(store.group)) %></td>
+          <td>
+            <% if policy(:store).group_manager? %>
+              <%= link_to("Edit", edit_group_store_path(store.group, store), class: "btn btn-sm btn-default") %>
+              <%= link_to("Delete", group_store_path(store.group, store),    class: "btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?" } )%>
+            <% end %>
+          </td>
+        </tr>
       <% end %>
     </tbody>
   </table>

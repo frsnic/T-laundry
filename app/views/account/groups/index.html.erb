@@ -21,6 +21,9 @@
               <%= link_to("Edit", edit_group_path(group), class: "btn btn-sm btn-default") %>
               <%= link_to("Delete", group_path(group),    class: "btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?" } )%>
             <% end %>
+            <% if policy(:group).group_manager? %>
+              <%= link_to("New Store", new_group_store_path(group), class: "btn btn-sm btn-default")%>
+            <% end %>
           </td>
         </tr>
       <% end %>
