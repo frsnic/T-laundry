@@ -14,9 +14,7 @@
           <td><%= link_to(truncate(store.title, length: 15), group_store_path(store.group, store)) %></td>
           <td><%= link_or_title(store.group.title, 15, policy(:group).group_manager?,group_path(store.group)) %></td>
           <td>
-            <% if policy(:store).manager? %>
-              <%= link_to("Edit", edit_group_store_path(store.group, store), class: "btn btn-sm btn-primary") %>
-            <% end %>
+            <%= link_to("Edit", edit_group_store_path(store.group, store), class: "btn btn-sm btn-primary") %>
             <% if policy(:store).group_manager? %>
               <%= link_to("Delete", group_store_path(store.group, store), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
             <% end %>

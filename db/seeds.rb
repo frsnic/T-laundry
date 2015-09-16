@@ -58,7 +58,6 @@ frsnic_group = Group.create({
 })
 
 frsnicg.groups << frsnic_group
-frsnics.groups << frsnic_group
 
 frsnics_store = Store.create({
   title: 'frsnics store',

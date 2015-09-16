@@ -3,7 +3,9 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :account do
-    resources :groups
+    resources :groups do
+      get  'manager_list', on: :collection
+    end
     resources :stores
   end
 
