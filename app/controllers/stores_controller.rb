@@ -46,7 +46,7 @@ class StoresController < ApplicationController
   private
 
   def store_params
-    params.require(:store).permit(:title)
+    params.require(:store).permit(:title, :phone, :landline, :location)
   end
 
   def find_group

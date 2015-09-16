@@ -23,8 +23,8 @@
           <td><%= link_to(truncate(store.title, length: 15), group_store_path(@group, store)) %></td>
           <td>
             <% if policy(:store).group_manager? %>
-              <%= link_to("Edit", edit_group_store_path(store.group, store), class: "btn btn-sm btn-default") %>
-              <%= link_to("Delete", group_store_path(store.group, store),    class: "btn btn-sm btn-default", method: :delete, data: { confirm: "Are you sure?" } )%>
+              <%= link_to("Edit", edit_group_store_path(store.group, store), class: "btn btn-sm btn-primary") %>
+              <%= link_to("Delete", group_store_path(store.group, store),    class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
             <% end %>
           </td>
         </tr>
