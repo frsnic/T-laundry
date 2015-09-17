@@ -3,17 +3,16 @@ Rails.application.routes.draw do
   devise_for :users
 
   namespace :account do
-    resources :groups do
-      get  'manager_list', on: :collection
-    end
+    resources :groups
     resources :stores
   end
 
   resources :groups do
     resources :stores
+    resources :managers, :controller => "group_managers"
   end
 
-  root 'home#index' #這行代表把 localhost:3000/groups 這個網址設成首頁
+  root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

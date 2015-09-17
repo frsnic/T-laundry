@@ -1,30 +1,62 @@
-<div class="col-md-12">
+<div class="col-md-12 bottom-buffer">
   <div class="group">
     <% if policy(:group).admin? %>
       <%= link_to("New Group", new_group_path, class: "btn btn-success pull-right") %>
     <% end %>
   </div>
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <td>#</td>
-        <td>Title</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @groups.each_with_index do |group, index| %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td><%= link_to(truncate(group.title, length: 15), group_path(group)) %></td>
-          <td>
-            <% if policy(:group).admin? %>
-              <%= link_to("Edit", edit_group_path(group), class: "btn btn-sm btn-primary") %>
-              <%= link_to("Delete", group_path(group),    class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
-            <% end %>
-            <%= link_to("New Store", new_group_store_path(group), class: "btn btn-sm btn-success")%>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+</div>
+
+<div class="col-md-12">
+  <% @groups.each do |group| %>
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <div class="panel-title row">
+          <div class="col-md-6">
+            <h4><%= link_to(truncate(group.title, length: 15), group_path(group)) %></h4>
+          </div>
+          <div class="col-md-6">
+            <div class="dropdown pull-right">
+              <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                Action
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                <% if policy(:group).admin? %>
+                  <li><%= link_to("Edit", edit_group_path(group)) %></li>
+                  <li><%= link_to("Delete", group_path(group), method: :delete, data: { confirm: "Are you sure?" } )%></li>
+                <% end %>
+                <li><%= link_to("New Manager", new_group_manager_path(group))%></li>
+                <li><%= link_to("New Store", new_group_store_path(group))%></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="panel-body">
+        <div class="col-md-12">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <td>#</td>
+                <td>Group Manager Name</td>
+              </tr>
+            </thead>
+            <tbody>
+              <% group.group_managers.each_with_index do |manager, index| %>
+                <tr>
+                  <td><%= index + 1 %></td>
+                  <td><%= link_to(manager.name, group_manager_path(group, manager)) %></td>
+                  <td>
+                    <%= link_to("Edit", edit_group_manager_path(group, manager), class: "btn btn-sm btn-primary") %>
+                    <%= link_to("Delete", group_manager_path(group, manager), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  <% end %>
+  </div>
 </div>
