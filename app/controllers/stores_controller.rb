@@ -18,7 +18,7 @@ class StoresController < ApplicationController
     if @store.save
       redirect_to account_stores_path, notice: '新增商店成功'
     else
-      render :account_new
+      render :new
     end
   end
 
@@ -32,7 +32,7 @@ class StoresController < ApplicationController
     if @store.update(store_params)
       redirect_to account_stores_path, notice: "修改商店成功"
     else
-      render :account_edit
+      render :edit
     end
   end
 
