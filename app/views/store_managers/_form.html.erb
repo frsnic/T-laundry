@@ -1,0 +1,11 @@
+<%= simple_form_for @manager, url: "/stores/#{@store.id}/managers/#{@manager.id}" do |f| %>
+  <div class="form-store">
+    <%= f.input :name, input_html: { class: "form-control"}, autofocus: true %>
+    <%= f.input :email, required: true %>
+    <% unless @manager.id %>
+      <%= f.input :password, autocomplete: "off", required: true %>
+      <%= f.input :password_confirmation, required: true %><br />
+    <% end %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting..." } %>
+<% end %>

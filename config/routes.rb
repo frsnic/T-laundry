@@ -12,6 +12,10 @@ Rails.application.routes.draw do
     resources :managers, :controller => "group_managers"
   end
 
+  resources :stores do
+    resources :managers, :controller => "store_managers"
+  end
+
   root 'home#index'
 
   # The priority is based upon order of creation: first created -> highest priority.
