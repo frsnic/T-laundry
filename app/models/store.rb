@@ -5,6 +5,4 @@ class Store < ActiveRecord::Base
 
   validates :title, presence: true
 
-  default_scope { order('group_id ASC, created_at ASC') }
-
 end

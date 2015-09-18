@@ -5,8 +5,10 @@ class GroupPolicy < ApplicationPolicy
     def resolve
       if user.admin?
         scope.all
-      else
+      elsif user.group_manager?
         user.groups
+      else
+        scope.where(id: user.stores.pluck(:group_id))
       end
     end
 
