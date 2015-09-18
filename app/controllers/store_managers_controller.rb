@@ -1,7 +1,7 @@
 class StoreManagersController < ApplicationController
   before_action :authenticate_user!
   before_action :authorize_manager!
-  before_action :find_store
+  before_action :find_store_and_group
 
   def show
     @manager = @store.store_managers.find(params[:id])
@@ -50,7 +50,7 @@ class StoreManagersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  def find_store
+  def find_store_and_group
     @store = policy_scope(Store).find(params[:store_id])
     @group = @store.group
   end

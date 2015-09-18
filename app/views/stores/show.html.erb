@@ -1,5 +1,6 @@
 <div class="col-md-12">
   <div class="store">
+    <%= link_to("New Order", new_store_order_path(@store), class: "btn btn-success pull-right")%>
     <% if policy(:store).group_manager? %>
       <%= link_to("Delete", group_store_path(@group, @store), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } )%>
     <% end %>
@@ -11,4 +12,27 @@
     <li>市話：<%= @store.landline %></li>
     <li>地址：<%= @store.location %></li>
   </ul>
+
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>Client</td>
+        <td>Price</td>
+      </tr>
+    </thead>
+    <tbody>
+      <% @store.orders.each do |order| %>
+        <tr>
+          <td><%= order.id %></td>
+          <td><%= order.client_id %></td>
+          <td><%= number_to_currency order.price %></td>
+          <td>
+            <%= link_to("Edit", edit_store_order_path(@store, order), class: "btn btn-sm btn-primary") %>
+            <%= link_to("Delete", store_order_path(@store, order), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 </div>

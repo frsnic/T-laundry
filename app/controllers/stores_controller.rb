@@ -16,7 +16,7 @@ class StoresController < ApplicationController
     @store = @group.stores.build(store_params)
 
     if @store.save
-      redirect_to account_stores_path, notice: '新增商店成功'
+      redirect_to group_store_path(@group, @store), notice: '新增商店成功'
     else
       render :new
     end
@@ -30,7 +30,7 @@ class StoresController < ApplicationController
     @store = policy_scope(Store).find(params[:id])
 
     if @store.update(store_params)
-      redirect_to account_stores_path, notice: "修改商店成功"
+      redirect_to group_store_path(@group, @store), notice: "修改商店成功"
     else
       render :edit
     end

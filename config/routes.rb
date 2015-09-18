@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
   resources :stores do
     resources :managers, :controller => "store_managers"
+    resources :orders
   end
 
   root 'home#index'

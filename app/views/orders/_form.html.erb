@@ -1,0 +1,7 @@
+<%= simple_form_for [@store, @order] do |f| %>
+  <div class="form-store">
+    <%= f.input :client_id, input_html: { class: "form-control"}, autofocus: true, required: true %>
+    <%= f.input :price,     input_html: { class: "form-control"}, required:  true %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting..." } %>
+<% end %>
