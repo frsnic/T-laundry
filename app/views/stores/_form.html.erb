@@ -1,6 +1,6 @@
 <%= simple_form_for [@group, @store] do |f| %>
   <div class="form-store">
-    <%= f.input :title,    input_html: { class: "form-control"} %>
+    <%= f.input :title,    input_html: { class: "form-control"}, autofocus: true, required: true %>
     <%= f.input :phone,    input_html: { class: "form-control"} %>
     <%= f.input :landline, input_html: { class: "form-control"} %>
     <%= f.input :location, input_html: { class: "form-control"} %>
