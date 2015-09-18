@@ -4,7 +4,7 @@ class GroupManagersController < ApplicationController
   before_action :find_group
 
   def show
-    @manager = policy_scope(User).find(params[:id])
+    @manager = @group.group_managers.find(params[:id])
   end
 
   def new
@@ -24,11 +24,11 @@ class GroupManagersController < ApplicationController
   end
 
   def edit
-    @manager = policy_scope(User).find(params[:id])
+    @manager = @group.group_managers.find(params[:id])
   end
 
   def update
-    @manager = policy_scope(User).find(params[:id])
+    @manager = @group.group_managers.find(params[:id])
 
     if @manager.update(user_params)
       redirect_to account_groups_path, notice: "修改群組管理員成功"
@@ -38,7 +38,7 @@ class GroupManagersController < ApplicationController
   end
 
   def destroy
-    @manager = policy_scope(User).find(params[:id])
+    @manager = @group.group_managers.find(params[:id])
 
     @manager.destroy
     redirect_to account_groups_path, alert: "群組管理員已刪除"

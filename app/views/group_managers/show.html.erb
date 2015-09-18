@@ -4,4 +4,7 @@
     <%= link_to("Edit", edit_group_manager_path(@group, @manager), class: "btn btn-primary pull-right")%>
   </div>
   <h2><%= @manager.name %></h2>
+  <ul>
+    <li><%= @manager.email %></li>
+  </ul>
 </div>
