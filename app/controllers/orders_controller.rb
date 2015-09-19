@@ -9,14 +9,15 @@ class OrdersController < ApplicationController
 
   def new
     @order = @store.orders.new
+    @order.client = find_client(params[:client_id])
   end
 
   def create
     @order = @store.orders.build(order_params)
     @order.user_id = current_user.id
+    @order.client  = find_client(@order.client_id)
 
     if @order.save
-      logger.info "== #{@order.as_json} =="
       redirect_to store_order_path(@store, @order), notice: '新增訂單成功'
     else
       render :new
@@ -29,6 +30,7 @@ class OrdersController < ApplicationController
 
   def update
     @order = @store.orders.find(params[:id])
+    @order.client = find_client(@order.client_id)
 
     if @order.update(order_params)
       redirect_to store_order_path(@store, @order), notice: "修改訂單成功"
@@ -53,6 +55,10 @@ class OrdersController < ApplicationController
   def find_store_and_group
     @store = policy_scope(Store).find(params[:store_id])
     @group = @store.group
+  end
+
+  def find_client(client_id)
+    @client = @store.clients.find(client_id)
   end
 
 end

@@ -7,6 +7,7 @@ class User < ActiveRecord::Base
   has_many :groups, through: :group_users, source: :group
   has_many :store_users, dependent: :destroy
   has_many :stores, through: :store_users, source: :store
+  has_many :orders
 
   validates :name, presence: true
 

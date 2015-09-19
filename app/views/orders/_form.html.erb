@@ -1,6 +1,9 @@
 <%= simple_form_for [@store, @order] do |f| %>
   <div class="form-store">
-    <%= f.input :client_id, input_html: { class: "form-control"}, autofocus: true, required: true %>
+    <% if @order.client %>
+      <%= f.label @order.client.name, input_html: { class: "form-control"} %>
+    <% end %>
+    <%= f.input :client_id, input_html: { class: "form-control"}, autofocus: true, required: true, readonly: !policy(:store).admin? %>
     <%= f.input :price,     input_html: { class: "form-control"}, required:  true %>
   </div>
   <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting..." } %>

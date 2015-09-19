@@ -1,6 +1,7 @@
 <div class="col-md-12">
   <div class="store">
-    <%= link_to("New Order", new_store_order_path(@store), class: "btn btn-success pull-right")%>
+    <%= link_to("New Client", new_store_client_path(@store), class: "btn btn-success pull-right")%>
+    <%= link_to("New Order",  store_clients_path(@store),  class: "btn btn-success pull-right")%>
     <% if policy(:store).group_manager? %>
       <%= link_to("Delete", group_store_path(@group, @store), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } )%>
     <% end %>
@@ -17,16 +18,22 @@
     <thead>
       <tr>
         <td>Id</td>
-        <td>Client</td>
-        <td>Price</td>
+        <td>客戶</td>
+        <td>總價</td>
+        <td>狀態</td>
+        <td>送洗日期</td>
+        <td>取件日期</td>
       </tr>
     </thead>
     <tbody>
-      <% @store.orders.each do |order| %>
+      <% @store.orders.each_with_index do |order, index| %>
         <tr>
-          <td><%= order.id %></td>
-          <td><%= order.client_id %></td>
+          <td><%= index + 1 %></td>
+          <td><%= link_to(order.client.name, store_client_path(@store, order.client)) %></td>
           <td><%= number_to_currency order.price %></td>
+          <td></td>
+          <td><%= order.created_at.strftime('%F %r 星期%w') %></td>
+          <td></td>
           <td>
             <%= link_to("Edit", edit_store_order_path(@store, order), class: "btn btn-sm btn-primary") %>
             <%= link_to("Delete", store_order_path(@store, order), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
