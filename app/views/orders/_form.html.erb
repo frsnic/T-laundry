@@ -1,10 +1,16 @@
 <%= simple_form_for [@store, @order] do |f| %>
-  <div class="form-store">
+  <div class="form-store bottom-buffer">
     <% if @order.client %>
       <%= f.label @order.client.name, input_html: { class: "form-control"} %>
     <% end %>
     <%= f.input :client_id, input_html: { class: "form-control"}, autofocus: true, required: true, readonly: !policy(:store).admin? %>
     <%= f.input :price,     input_html: { class: "form-control"}, required:  true %>
+
+    <hr>
+    <%= f.simple_fields_for :order_items do |item| %>
+      <%= item.input :cloth_name %>
+      <%= item.input :price %>
+    <% end %>
   </div>
   <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting..." } %>
 <% end %>
