@@ -1,0 +1,6 @@
+<%= simple_form_for [@group, @cloth] do |f| %>
+  <div class="form-cloth">
+    <%= f.input :title,    input_html: { class: "form-control"}, autofocus: true, required: true %>
+  </div>
+  <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting..." } %>
+<% end %>

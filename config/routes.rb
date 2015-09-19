@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   resources :groups do
     resources :stores
     resources :managers, :controller => "group_managers"
+    resources :cloths
   end
 
   resources :stores do

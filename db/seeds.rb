@@ -85,3 +85,11 @@ Store.all.each do |store|
     end
   end
 end
+
+Group.all.each do |group|
+  30.times do |index|
+    cloth = group.cloths.new
+    cloth.title = 'Cloth ' + (index + 1).to_s
+    cloth.save
+  end
+end

@@ -1,0 +1,26 @@
+<div class="col-md-12 bottom-buffer">
+  <div class="cloth">
+    <% if policy(:group).group_manager? %>
+      <%= link_to("Delete", group_cloth_path(@group, @cloth), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } )%>
+      <%= link_to("Edit", edit_group_cloth_path(@group, @cloth), class: "btn btn-primary pull-right")%>
+    <% end %>
+  </div>
+  <h2><%= @cloth.title %></h2>
+
+  <!--table class="table table-hover">
+    <thead>
+      <tr>
+        <td>Id</td>
+        <td>客戶</td>
+        <td>總價</td>
+        <td>狀態</td>
+        <td>送洗日期</td>
+        <td>取件日期</td>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table-->
+</div>
+
+<%= link_to('群組列表', account_groups_path, class: "btn btn-default") %>
