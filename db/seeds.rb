@@ -1,10 +1,5 @@
 # This file should contain all the record creation needed to seed the database with its default values.
 # The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
 
 puts "rake db:seed"
 
@@ -65,3 +60,29 @@ frsnics_store = Store.create({
 })
 
 frsnics.stores << frsnics_store
+
+Store.all.each do |store|
+  20.times do
+    client = store.clients.new
+    client.name = [*('a'..'z'), *('A'..'Z'), *('0'..'9')].sample(6).join
+    client.phone = [*('0'..'9')].sample(10).join
+    client.save
+  end
+end
+
+Store.all.each do |store|
+  20.times do
+    order = store.orders.new
+    order.client_id = store.clients.pluck(:id).sample
+    order.user_id   = store.store_managers.pluck(:id).sample
+    order.price     = [*(1..1000)].sample
+    order.save
+    [*(1..5)].sample.times do
+      item = order.order_items.new
+      item.quantity   = [*(1..10)].sample
+      item.sum        = [*(1..1000)].sample
+      item.cloth_name = [*('a'..'z'), *('A'..'Z'), *('0'..'9')].sample(10).join
+      item.save
+    end
+  end
+end
