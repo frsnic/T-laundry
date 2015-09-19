@@ -64,7 +64,7 @@ frsnics.stores << frsnics_store
 Store.all.each do |store|
   20.times do
     client = store.clients.new
-    client.name = [*('a'..'z'), *('A'..'Z'), *('0'..'9')].sample(6).join
+    client.name = 'Client ' + [*('a'..'z'), *('A'..'Z'), *('0'..'9')].sample(6).join
     client.phone = [*('0'..'9')].sample(10).join
     client.save
   end
@@ -79,8 +79,7 @@ Store.all.each do |store|
     order.save
     [*(1..5)].sample.times do
       item = order.order_items.new
-      item.quantity   = [*(1..10)].sample
-      item.sum        = [*(1..1000)].sample
+      item.price        = [*(1..100)].sample
       item.cloth_name = [*('a'..'z'), *('A'..'Z'), *('0'..'9')].sample(10).join
       item.save
     end
