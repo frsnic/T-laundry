@@ -8,7 +8,7 @@
 
     <hr>
     <%= f.simple_fields_for :order_items do |item| %>
-      <%= item.input :cloth_name %>
+      <%= item.input :cloth_name, collection: @store.group.cloths.pluck(:title) %>
       <%= item.input :price %>
     <% end %>
   </div>
