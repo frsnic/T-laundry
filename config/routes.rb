@@ -16,7 +16,12 @@ Rails.application.routes.draw do
   resources :stores do
     resources :managers, :controller => "store_managers"
     resources :orders
-    resources :clients
+    resources :clients do
+      member do
+        get 'held'
+        post 'fetch'
+      end
+    end
   end
 
   root 'home#index'

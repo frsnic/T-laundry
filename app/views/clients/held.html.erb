@@ -1,0 +1,29 @@
+<div class="col-md-6 col-md-offset-3">
+  <h1>取件</h1>
+  <hr>
+
+  <%= form_tag fetch_store_client_path(@store, @client) do |f| %>
+    <%= submit_tag("Fetch", class: "btn btn-warning") %>
+    <table class="table top-buffer">
+      <thead>
+        <th></th>
+        <th>Order Id</th>
+        <th>Cloth</th>
+        <th>Price</th>
+        <th>Status</th>
+      </thead>
+      <tbody>
+        <% orders = @items.pluck(:order_id).uniq %>
+        <% @items.each do |item| %>
+          <%= content_tag :tr, class: (orders.find_index(item.order_id).odd? ? "fields odd" : "fields") do %>
+            <td><%= check_box_tag "items[]", item.id.to_i %></td>
+            <td><%= item.order_id %></td>
+            <td><%= item.cloth_title %></td>
+            <td><%= item.price %></td>
+            <td></td>
+          <% end %>
+        <% end %>
+      </tbody>
+    </table>
+  <% end %>
+</div>

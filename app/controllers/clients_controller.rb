@@ -46,6 +46,21 @@ class ClientsController < ApplicationController
     redirect_to store_clients_path(@store), alert: "客戶已刪除"
   end
 
+  def held
+    @client = @store.clients.find(params[:id])
+    @items  = OrderItem.where(order_id: @store.orders.where(client_id: @client.id).pluck(:id))
+  end
+
+  def fetch
+    @client = @store.clients.find(params[:id])
+    @items  = OrderItem.where(order_id: @store.orders.where(client_id: @client.id).pluck(:id)).pluck(:id)
+    array = []
+    params[:items].each_with_index {|item, index| array << item.to_i }
+    @items = @items & array
+
+    redirect_to held_store_client_path(@store, @client), notice: "取件成功"
+  end
+
   private
 
   def client_params
