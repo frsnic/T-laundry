@@ -8,8 +8,9 @@ $(document).on 'click', '.copy', ->
     $(".add_nested_fields").click()
     n--
   total = 0
-  $(".price").each ->
+  $(".price:visible").each ->
     total = total + parseInt( $(this).val() )
+    console.log(total)
   $("#order_price").val(total)
   return
 
