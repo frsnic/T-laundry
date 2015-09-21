@@ -46,7 +46,7 @@
           <%= f.fields_for :order_items, :wrapper => false do |item| %>
             <tr class="fields">
               <td>
-                <%= item.text_field :cloth_name, class: 'cloth_name form-control', readonly: true %>
+                <%= item.text_field :cloth_title, class: 'cloth_title form-control', readonly: true %>
               </td>
               <td><%= item.number_field :price, class: 'price form-control', readonly: true %></td>
               <td><%= item.link_to_remove "Remove", class: 'btn btn-danger' %></td>

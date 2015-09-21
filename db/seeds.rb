@@ -80,7 +80,7 @@ Store.all.each do |store|
     [*(1..5)].sample.times do
       item = order.order_items.new
       item.price        = [*(1..100)].sample
-      item.cloth_name = [*('a'..'z'), *('A'..'Z'), *('0'..'9')].sample(10).join
+      item.cloth_title = [*('a'..'z'), *('A'..'Z'), *('0'..'9')].sample(10).join
       item.save
     end
   end

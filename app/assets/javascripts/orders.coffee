@@ -14,7 +14,7 @@ $(document).on 'click', '.copy', ->
   return
 
 $(document).on 'nested:fieldAdded', (event) ->
-  event.field.find('.cloth_name').val( $("#new_cloth_title").val() )
+  event.field.find('.cloth_title').val( $("#new_cloth_title").val() )
   event.field.find('.price').val( $("#new_price").val() )
   return
 

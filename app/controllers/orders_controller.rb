@@ -50,7 +50,7 @@ class OrdersController < ApplicationController
 
   def order_params
     params.require(:order).permit(:client_id, :price,
-      order_items_attributes: [:id, :cloth_name, :price, :_destroy])
+      order_items_attributes: [:id, :cloth_title, :price, :_destroy])
   end
 
   def find_store_and_group
