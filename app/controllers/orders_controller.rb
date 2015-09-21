@@ -10,7 +10,6 @@ class OrdersController < ApplicationController
   def new
     @order = @store.orders.new
     @order.client = find_client(params[:client_id])
-    @order.order_items.build
   end
 
   def create
@@ -50,7 +49,8 @@ class OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:client_id, :price, order_items_attributes: [:id, :cloth_name, :price])
+    params.require(:order).permit(:client_id, :price,
+      order_items_attributes: [:id, :cloth_name, :price, :_destroy])
   end
 
   def find_store_and_group

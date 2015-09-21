@@ -1,5 +1,61 @@
 <div class="col-md-4 col-md-offset-4">
   <h1>新增訂單</h1>
-  <hr>
-  <%= render "form", order: @order %>
+
+
+  <%= nested_form_for [@store, @order], html: { class: "form-horizontal" } do |f| %>
+    <div class="form-store top-buffer bottom-buffer">
+      <div class="form-group">
+        <div class="col-md-3">
+          <%= select_tag "new_cloth_title", options_for_select(@store.group.cloths.pluck(:title)), class: "form-control" %>
+        </div>
+        <div class="col-md-3">
+          <%= number_field_tag :new_price, 0, min: 0, class: "form-control" %>
+        </div>
+        <div class="col-md-3">
+          <%= number_field_tag :new_quantity, 1, min: 1, class: "form-control" %>
+        </div>
+        <%= f.link_to_add "Add a order_item", :order_items, :data => { :target => "#order_items" }, class: "hide" %>
+        <%= button_tag "Add Order Item", class: "btn btn-success copy", type: "button" %>
+      </div>
+
+      <hr>
+
+      <% if @order.client %>
+        <h3><%= @order.client.name %></h3>
+      <% end %>
+      <%= content_tag :div, class: (policy(:store).admin? ? "form-group" : "hide") do %>
+        <%= f.label :client_id, class: "col-md-2 control-label" %>
+        <div class="col-md-10">
+          <%= f.number_field :client_id, class: "form-control", required:  true %>
+        </div>
+      <% end %>
+      <div class="form-group">
+        <%= f.label :price, class: "col-md-2 control-label" %>
+        <div class="col-md-10">
+          <%= f.number_field :price, class: "form-control", required:  true, min: 0 %>
+        </div>
+      </div>
+
+      <table id="order_items" class="table top-buffer">
+        <thead>
+          <th>Cloth</th>
+          <th>Price</th>
+          <th></th>
+        </thead>
+        <tbody>
+          <%= f.fields_for :order_items, :wrapper => false do |item| %>
+            <tr class="fields">
+              <td>
+                <%= item.text_field :cloth_name, class: 'cloth_name form-control', readonly: true %>
+              </td>
+              <td><%= item.number_field :price, class: 'price form-control', readonly: true %></td>
+              <td><%= item.link_to_remove "Remove", class: 'btn btn-danger' %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+    <%= f.submit "Submit", class: "btn btn-primary pull-right", data: { disable_with: "Submitting..." } %>
+  <% end %>
+
 </div>

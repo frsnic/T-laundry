@@ -56,3 +56,5 @@ gem 'bootstrap-sass'
 gem 'pundit'
 
 gem 'simple_form'
+
+gem 'nested_form'
