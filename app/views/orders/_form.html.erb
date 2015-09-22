@@ -1,23 +1,35 @@
 <%= nested_form_for [@store, @order], html: { class: "form-horizontal" } do |f| %>
   <div class="form-store top-buffer bottom-buffer">
-    <div class="form-group">
-      <div class="col-md-4">
-        <%= select_tag "new_cloth_title", options_for_select(@store.group.cloths.pluck(:title)), class: "form-control" %>
-      </div>
-      <div class="col-md-2">
-        <%= number_field_tag :new_price, 0, min: 0, class: "form-control" %>
-      </div>
-      <div class="col-md-2">
-        <%= number_field_tag :new_quantity, 1, min: 1, class: "form-control" %>
-      </div>
-      <%= f.link_to_add "Add a order_item", :order_items, :data => { :target => "#order_items" }, class: "hide" %>
-      <%= button_tag "Add Order Item", class: "btn btn-success copy", type: "button" %>
-    </div>
+    <table class="table">
+      <thead>
+        <th>Cloth</th>
+        <th>Price</th>
+        <th>Qty</th>
+        <th></th>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="col-md-4">
+            <%= select_tag "new_cloth_title", options_for_select(@store.group.cloths.pluck(:title)), class: "form-control" %>
+          </td>
+          <td class="col-md-2">
+            <%= number_field_tag :new_price, 0, min: 0, class: "form-control" %>
+          </td>
+          <td class="col-md-2">
+            <%= number_field_tag :new_quantity, 1, min: 1, class: "form-control" %>
+          </td>
+          <td class="col-md-4">
+            <%= f.link_to_add "Add a order_item", :order_items, :data => { :target => "#order_items" }, class: "hide" %>
+            <%= button_tag "Add Order Item", class: "btn btn-success copy", type: "button" %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
 
     <hr>
 
     <% if @order.client %>
-      <h3><%= @order.client.name %></h3>
+      <h3 class="bottom-buffer"><%= @order.client.name %></h3>
     <% end %>
     <%= content_tag :div, class: (policy(:store).admin? ? "form-group" : "hide") do %>
       <%= f.label :client_id, class: "col-md-2 control-label" %>
