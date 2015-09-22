@@ -19,11 +19,10 @@ development:
   host: localhost
 
 test:
-  <<: *default
-  database: t_laundry_test
-  username: hank
-  password: 1234
-  host: localhost
+  adapter: sqlite3
+  pool: 5
+  timeout: 5000
+  database: db/test.sqlite3
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
