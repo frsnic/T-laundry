@@ -4,5 +4,6 @@ rvm:
 env:
   - DB=mysql
 before_script:
-  - rake dev:rebulid
+  - mysql -e 'create database t_laundry_test;'
+  - rake dev:rebuild
 
