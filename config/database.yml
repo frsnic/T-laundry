@@ -21,8 +21,7 @@ development:
 test:
   <<: *default
   database: t_laundry_test
-  username: hank
-  password: 1234
+  username:
   host: localhost
 
 # Warning: The database defined as "test" will be erased and
