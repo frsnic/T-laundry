@@ -1,11 +1,12 @@
 <div class="col-md-12">
   <div class="store">
-    <%= link_to("New Client", new_store_client_path(@store), class: "btn btn-success pull-right")%>
-    <%= link_to("New Order",  store_clients_path(@store),  class: "btn btn-success pull-right")%>
+    <%= link_to("New Client", new_store_client_path(@store), class: "btn btn-success pull-right") %>
+    <%= link_to("New Order",  store_clients_path(@store),  class: "btn btn-success pull-right") %>
     <% if policy(:store).group_manager? %>
-      <%= link_to("Delete", group_store_path(@group, @store), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } )%>
+      <%= link_to("Delete", group_store_path(@group, @store), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } ) %>
     <% end %>
-    <%= link_to("Edit", edit_group_store_path(@group, @store), class: "btn btn-primary pull-right")%>
+    <%= link_to("Edit", edit_group_store_path(@group, @store), class: "btn btn-primary pull-right") %>
+    <%= link_to("Fetch", store_clients_path(@store), class: "btn btn-warning pull-right") %>
   </div>
   <h2><%= @store.title %></h2>
   <ul>
@@ -17,7 +18,8 @@
   <table class="table table-hover">
     <thead>
       <tr>
-        <td>Id</td>
+        <td>#</td>
+        <td>Order Id</td>
         <td>客戶</td>
         <td>總價</td>
         <td>狀態</td>
@@ -26,17 +28,19 @@
       </tr>
     </thead>
     <tbody>
-      <% @store.orders.each_with_index do |order, index| %>
+      <% @orders.each_with_index do |order, index| %>
         <tr>
           <td><%= index + 1 %></td>
+          <td><%= link_to(order.id, store_order_path(@store, order)) %></td>
           <td><%= link_to(order.client.name, store_client_path(@store, order.client)) %></td>
           <td><%= number_to_currency order.price %></td>
-          <td></td>
+          <td><%= order.status %></td>
           <td><%= strftime(order.created_at) %></td>
-          <td></td>
+          <td><%= strftime(order.fetched_at) %></td>
           <td>
+            <%= link_to("Fetch", held_store_client_path(@store, order.client), class: "btn btn-sm  btn-warning") %>
             <%= link_to("Edit", edit_store_order_path(@store, order), class: "btn btn-sm btn-primary") %>
-            <%= link_to("Delete", store_order_path(@store, order), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+            <%= link_to("Delete", store_order_path(@store, order), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } ) %>
           </td>
         </tr>
       <% end %>

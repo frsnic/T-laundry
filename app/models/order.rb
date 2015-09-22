@@ -9,4 +9,13 @@ class Order < ActiveRecord::Base
 
   accepts_nested_attributes_for :order_items, allow_destroy: true
 
+  def status
+    return OrderItem.statuses.index(self.order_items.pluck(:status).uniq.min)
+  end
+
+  def fetched_at
+    fetched_times = self.order_items.pluck(:fetched_at).uniq
+    return ([nil, ""] & fetched_times).present? ? "" : (fetched_times - [nil, ""]).max
+  end
+
 end

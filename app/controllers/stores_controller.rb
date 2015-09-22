@@ -5,7 +5,8 @@ class StoresController < ApplicationController
   before_action :find_group
 
   def show
-    @store = policy_scope(Store).find(params[:id])
+    @store  = policy_scope(Store).find(params[:id])
+    @orders = @store.orders
   end
 
   def new

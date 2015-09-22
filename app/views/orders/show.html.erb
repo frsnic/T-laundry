@@ -1,8 +1,9 @@
 <div class="col-md-12 bottom-buffer">
   <div class="order">
     <% if policy(:store).manager? %>
-      <%= link_to("Delete", store_order_path(@store, @order), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } )%>
-      <%= link_to("Edit", edit_store_order_path(@store, @order), class: "btn btn-primary pull-right")%>
+      <%= link_to("Delete", store_order_path(@store, @order), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } ) %>
+      <%= link_to("Edit", edit_store_order_path(@store, @order), class: "btn btn-primary pull-right") %>
+      <%= link_to('Fetch', fetch_store_client_path(@store, @order.client), class: "btn btn-warning pull-right") %>
     <% end %>
   </div>
   <h2>Order Id：<%= @order.id %></h2>
@@ -10,6 +11,7 @@
     <li>客戶：<%= @order.client.name %></li>
     <li>總價：<%= number_to_currency @order.price %></li>
     <li>日期：<%= strftime(@order.created_at) %></li>
+    <li>狀態：<%= @order.status %></li>
   </ul>
 </div>
 
@@ -26,20 +28,14 @@
       </tr>
     </thead>
     <tbody>
-      <% @order.order_items.each_with_index do |item, index| %>
+      <% @order.order_items.order(:status, :order_id, :id).each_with_index do |item, index| %>
         <tr>
           <td><%= index + 1 %></td>
           <td><%= item.cloth_title %></td>
           <td><%= number_to_currency item.price %></td>
-          <td></td>
+          <td><%= item.status %></td>
           <td><%= strftime(item.created_at) %></td>
-          <td></td>
-          <td>
-            <% if policy(:store).manager? %>
-              <%= link_to("Edit", edit_store_order_path(@store, @order), class: "btn btn-sm btn-primary") %>
-              <%= link_to("Delete", store_order_path(@store, @order), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
-            <% end %>
-          </td>
+          <td><%= strftime(item.fetched_at) %></td>
         </tr>
       <% end %>
     </tbody>

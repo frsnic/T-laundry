@@ -1,9 +1,9 @@
 <div class="col-md-12 bottom-buffer">
   <div class="client">
     <% if policy(:store).manager? %>
-      <%= link_to("Delete", store_client_path(@store, @client), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } )%>
-      <%= link_to("Edit", edit_store_client_path(@store, @client), class: "btn btn-primary pull-right")%>
-      <%= link_to("New Order", new_store_order_path(@store, client_id: @client.id), class: "btn btn-success pull-right")%>
+      <%= link_to("Delete", store_client_path(@store, @client), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } ) %>
+      <%= link_to("Edit", edit_store_client_path(@store, @client), class: "btn btn-primary pull-right") %>
+      <%= link_to("New Order", new_store_order_path(@store, client_id: @client.id), class: "btn btn-success pull-right") %>
       <%= link_to("Fetch", held_store_client_path(@store, @client), class: "btn btn-warning pull-right") %>
     <% end %>
   </div>
@@ -32,13 +32,14 @@
           <td><%= index + 1 %></td>
           <td><%= link_to(order.id, store_order_path(@store, order)) %></td>
           <td><%= number_to_currency order.price %></td>
-          <td></td>
+          <td><%= order.status %></td>
           <td><%= strftime(order.created_at) %></td>
-          <td></td>
+          <td><%= strftime(order.fetched_at) %></td>
           <td>
             <% if policy(:store).manager? %>
+              <%= link_to("Fetch", held_store_client_path(@store, order.client), class: "btn btn-sm  btn-warning") %>
               <%= link_to("Edit", edit_store_order_path(@store, order), class: "btn btn-sm btn-primary") %>
-              <%= link_to("Delete", store_order_path(@store, order), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+              <%= link_to("Delete", store_order_path(@store, order), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } ) %>
             <% end %>
           </td>
         </tr>
