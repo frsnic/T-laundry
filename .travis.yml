@@ -5,4 +5,3 @@ env:
   - SECRET_KEY_BASE="$(bundle exec rake secret)"
 before_script:
   - rake dev:rebuild
-
