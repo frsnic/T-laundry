@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150921091205) do
+ActiveRecord::Schema.define(version: 20150922052132) do
 
   create_table "clients", force: :cascade do |t|
     t.integer  "store_id",   limit: 4,                                         null: false
@@ -47,6 +47,8 @@ ActiveRecord::Schema.define(version: 20150921091205) do
     t.integer  "order_id",    limit: 4,                                         null: false
     t.string   "cloth_title", limit: 255,                                       null: false
     t.decimal  "price",                   precision: 8, scale: 2, default: 0.0, null: false
+    t.integer  "status",      limit: 4,                           default: 0,   null: false
+    t.datetime "fetched_at"
     t.datetime "created_at",                                                    null: false
     t.datetime "updated_at",                                                    null: false
   end

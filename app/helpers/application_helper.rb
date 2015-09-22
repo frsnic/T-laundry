@@ -27,4 +27,8 @@ module ApplicationHelper
     end
   end
 
+  def strftime(datetime)
+    datetime ? datetime.strftime('%F %R 星期%w') : ""
+  end
+
 end

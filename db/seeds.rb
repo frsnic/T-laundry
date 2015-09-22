@@ -93,3 +93,5 @@ Group.all.each do |group|
     cloth.save
   end
 end
+
+OrderItem.where(status: 2).update_all(fetched_at: Time.now())

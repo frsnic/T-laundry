@@ -48,15 +48,15 @@ class ClientsController < ApplicationController
 
   def held
     @client = @store.clients.find(params[:id])
-    @items  = OrderItem.where(order_id: @store.orders.where(client_id: @client.id).pluck(:id))
+    @items  = @client.order_items.order(:status, :order_id, :id)
   end
 
   def fetch
     @client = @store.clients.find(params[:id])
-    @items  = OrderItem.where(order_id: @store.orders.where(client_id: @client.id).pluck(:id)).pluck(:id)
     array = []
     params[:items].each_with_index {|item, index| array << item.to_i }
-    @items = @items & array
+    @items = (@client.order_items.pluck(:id)) & array
+    OrderItem.where(id: @items).update_all(status: OrderItem.statuses[:out], fetched_at: Time.now())
 
     redirect_to held_store_client_path(@store, @client), notice: "取件成功"
   end

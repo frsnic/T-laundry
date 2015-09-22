@@ -11,19 +11,45 @@
         <th>Cloth</th>
         <th>Price</th>
         <th>Status</th>
+        <th>Created At</th>
       </thead>
       <tbody>
         <% orders = @items.pluck(:order_id).uniq %>
-        <% @items.each do |item| %>
+        <% @items.select {|e| e.finish? }.each do |item| %>
           <%= content_tag :tr, class: (orders.find_index(item.order_id).odd? ? "fields odd" : "fields") do %>
             <td><%= check_box_tag "items[]", item.id.to_i %></td>
             <td><%= item.order_id %></td>
             <td><%= item.cloth_title %></td>
             <td><%= item.price %></td>
-            <td></td>
+            <td><%= item.status %></td>
+            <td><%= strftime(item.created_at) %></td>
           <% end %>
         <% end %>
       </tbody>
     </table>
   <% end %>
+
+  <hr>
+  <table class="table top-buffer">
+    <thead>
+      <th>Feteh At</th>
+      <th>Order Id</th>
+      <th>Cloth</th>
+      <th>Price</th>
+      <th>Status</th>
+      <th>Created At</th>
+    </thead>
+    <tbody>
+      <% @items.select {|e| !e.finish? }.each do |item| %>
+        <%= content_tag :tr, class: (item.out? ? "fields odd" : "fields") do %>
+          <td><%= strftime(item.fetched_at) %></td>
+          <td><%= item.order_id %></td>
+          <td><%= item.cloth_title %></td>
+          <td><%= item.price %></td>
+          <td><%= item.status %></td>
+          <td><%= strftime(item.created_at) %></td>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
 </div>
