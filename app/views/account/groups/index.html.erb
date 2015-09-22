@@ -23,11 +23,11 @@
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
                 <% if policy(:group).admin? %>
                   <li><%= link_to("Edit", edit_group_path(group)) %></li>
-                  <li><%= link_to("Delete", group_path(group), method: :delete, data: { confirm: "Are you sure?" } )%></li>
+                  <li><%= link_to("Delete", group_path(group), method: :delete, data: { confirm: "Are you sure?" } ) %></li>
                 <% end %>
-                <li><%= link_to("New Manager", new_group_manager_path(group))%></li>
-                <li><%= link_to("New Store", new_group_store_path(group))%></li>
-                <li><%= link_to("New Cloth", new_group_cloth_path(group))%></li>
+                <li><%= link_to("New Manager", new_group_manager_path(group)) %></li>
+                <li><%= link_to("New Store", new_group_store_path(group)) %></li>
+                <li><%= link_to("New Cloth", new_group_cloth_path(group)) %></li>
               </ul>
             </div>
           </div>
@@ -49,7 +49,7 @@
                   <td><%= link_to(manager.name, group_manager_path(group, manager)) %></td>
                   <td>
                     <%= link_to("Edit", edit_group_manager_path(group, manager), class: "btn btn-sm btn-primary") %>
-                    <%= link_to("Delete", group_manager_path(group, manager), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+                    <%= link_to("Delete", group_manager_path(group, manager), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } ) %>
                   </td>
                 </tr>
               <% end %>
@@ -72,7 +72,7 @@
                   <td><%= link_to(cloth.title, group_cloth_path(group, cloth)) %></td>
                   <td>
                     <%= link_to("Edit", edit_group_cloth_path(group, cloth), class: "btn btn-sm btn-primary") %>
-                    <%= link_to("Delete", group_cloth_path(group, cloth), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+                    <%= link_to("Delete", group_cloth_path(group, cloth), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } ) %>
                   </td>
                 </tr>
               <% end %>

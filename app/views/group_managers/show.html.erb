@@ -1,7 +1,7 @@
 <div class="col-md-12">
   <div class="store">
-    <%= link_to("Delete", group_manager_path(@group, @manager), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } )%>
-    <%= link_to("Edit", edit_group_manager_path(@group, @manager), class: "btn btn-primary pull-right")%>
+    <%= link_to("Delete", group_manager_path(@group, @manager), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } ) %>
+    <%= link_to("Edit", edit_group_manager_path(@group, @manager), class: "btn btn-primary pull-right") %>
   </div>
   <h2><%= @manager.name %></h2>
   <ul>

@@ -20,7 +20,7 @@
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu1"></li>
                 <li><%= link_to("Edit", edit_group_store_path(store.group, store)) %>
                 <% if policy(:store).group_manager? %>
-                  <li><%= link_to("Delete", group_store_path(store.group, store), method: :delete, data: { confirm: "Are you sure?" } )%></li>
+                  <li><%= link_to("Delete", group_store_path(store.group, store), method: :delete, data: { confirm: "Are you sure?" } ) %></li>
                 <% end %>
                 <li><%= link_to("New Manager", new_store_manager_path(store)) %>
               </ul>
@@ -44,7 +44,7 @@
                   <td><%= link_to(manager.name, store_manager_path(store, manager)) %></td>
                   <td>
                     <%= link_to("Edit", edit_store_manager_path(store, manager), class: "btn btn-sm btn-primary") %>
-                    <%= link_to("Delete", store_manager_path(store, manager), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+                    <%= link_to("Delete", store_manager_path(store, manager), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } ) %>
                   </td>
                 </tr>
               <% end %>

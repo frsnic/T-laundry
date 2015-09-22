@@ -1,10 +1,10 @@
 <div class="col-md-12">
   <div class="group">
     <% if policy(:group).admin? %>
-      <%= link_to("Edit", edit_group_path(@group), class: "btn btn-primary pull-right")%>
+      <%= link_to("Edit", edit_group_path(@group), class: "btn btn-primary pull-right") %>
     <% end %>
     <% if policy(:group).group_manager? %>
-      <%= link_to("New Store", new_group_store_path(@group), class: "btn btn-success pull-right")%>
+      <%= link_to("New Store", new_group_store_path(@group), class: "btn btn-success pull-right") %>
     <% end %>
   </div>
   <h2><%= @group.title %></h2>
@@ -24,7 +24,7 @@
           <td>
             <% if policy(:store).group_manager? %>
               <%= link_to("Edit", edit_group_store_path(store.group, store), class: "btn btn-sm btn-primary") %>
-              <%= link_to("Delete", group_store_path(store.group, store),    class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } )%>
+              <%= link_to("Delete", group_store_path(store.group, store),    class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } ) %>
             <% end %>
           </td>
         </tr>
