@@ -65,7 +65,7 @@ class ClientsController < ApplicationController
   private
 
   def client_params
-    params.require(:client).permit(:name, :phone, :address)
+    params.require(:client).permit(:name, :phone, :address, :balance)
   end
 
   def find_store

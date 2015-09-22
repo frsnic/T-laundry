@@ -15,20 +15,24 @@ module ApplicationHelper
       content_tag(:div, alert_content, class: alert_class)
     end
 
-    alerts.join("\n").html_safe
+    return alerts.join("\n").html_safe
   end
 
   def link_or_title(title, length, need_link, link)
     title = truncate(title, length: length)
     if need_link
-      link_to(title, link)
+      return link_to(title, link)
     else
-      title
+      return title
     end
   end
 
   def strftime(datetime)
-    datetime && datetime.class == ActiveSupport::TimeWithZone ? datetime.strftime('%F %R 星期%w') : ""
+    return datetime && datetime.class == ActiveSupport::TimeWithZone ? datetime.strftime('%F %R 星期%w') : ""
+  end
+
+  def currency(price)
+    return content_tag :span, number_to_currency(price, precision: 0), class: (price < 0 ? "red" : "")
   end
 
 end
