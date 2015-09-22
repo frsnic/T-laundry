@@ -9,7 +9,7 @@
   <ul>
     <li>客戶：<%= @order.client.name %></li>
     <li>總價：<%= number_to_currency @order.price %></li>
-    <li>日期：<%= @order.created_at.strftime('%F %r 星期%w') %></li>
+    <li>日期：<%= strftime(@order.created_at) %></li>
   </ul>
 </div>
 
@@ -32,7 +32,7 @@
           <td><%= item.cloth_title %></td>
           <td><%= number_to_currency item.price %></td>
           <td></td>
-          <td><%= item.created_at.strftime('%F %r 星期%w') %></td>
+          <td><%= strftime(item.created_at) %></td>
           <td></td>
           <td>
             <% if policy(:store).manager? %>

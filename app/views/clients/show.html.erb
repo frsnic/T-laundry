@@ -33,7 +33,7 @@
           <td><%= link_to(order.id, store_order_path(@store, order)) %></td>
           <td><%= number_to_currency order.price %></td>
           <td></td>
-          <td><%= order.created_at.strftime('%F %r 星期%w') %></td>
+          <td><%= strftime(order.created_at) %></td>
           <td></td>
           <td>
             <% if policy(:store).manager? %>
