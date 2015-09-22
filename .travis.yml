@@ -3,8 +3,8 @@ rvm:
   - 2.2.1
 env:
   - DB=mysql
+  - SECRET_KEY_BASE="$(bundle exec rake secret)"
 before_script:
   - mysql -e 'create database t_laundry_test;'
-  - rails generate devise:install
   - rake dev:rebuild
 
