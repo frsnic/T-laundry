@@ -31,8 +31,8 @@ module ApplicationHelper
     return datetime && datetime.class == ActiveSupport::TimeWithZone ? datetime.strftime('%F %R 星期%w') : ""
   end
 
-  def currency(price)
-    return content_tag :span, number_to_currency(price, precision: 0), class: (price < 0 ? "red" : "")
+  def currency(price, precision)
+    return content_tag :span, number_to_currency(price, precision: precision), class: (price < 0 ? "red" : "")
   end
 
 end

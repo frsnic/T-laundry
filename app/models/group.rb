@@ -5,5 +5,6 @@ class Group < ActiveRecord::Base
   has_many :cloths, dependent: :destroy
 
   validates :title, presence: true, uniqueness: true
+  validates :precision, presence: true, numericality: { only_integer: true,  greater_than_or_equal_to: 0, less_than: 3 }
 
 end

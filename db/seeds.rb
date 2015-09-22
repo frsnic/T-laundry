@@ -50,6 +50,7 @@ frsnics = User.create({
 
 frsnic_group = Group.create({
   title: 'frsnic group',
+  precision: 0
 })
 
 frsnicg.groups << frsnic_group

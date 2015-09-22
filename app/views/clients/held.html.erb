@@ -20,7 +20,7 @@
             <td><%= check_box_tag "items[]", item.id.to_i %></td>
             <td><%= item.order_id %></td>
             <td><%= item.cloth_title %></td>
-            <td><%= item.price %></td>
+            <td><%= currency(item.price, @store.group.precision) %></td>
             <td><%= item.status %></td>
             <td><%= strftime(item.created_at) %></td>
           <% end %>
@@ -45,7 +45,7 @@
           <td><%= strftime(item.fetched_at) %></td>
           <td><%= item.order_id %></td>
           <td><%= item.cloth_title %></td>
-          <td><%= item.price %></td>
+          <td><%= currency(item.price, @store.group.precision) %></td>
           <td><%= item.status %></td>
           <td><%= strftime(item.created_at) %></td>
         <% end %>
