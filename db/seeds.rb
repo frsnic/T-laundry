@@ -64,7 +64,33 @@ frsnics.stores << frsnics_store
 Store.all.each do |store|
   20.times do
     client = store.clients.new
-    client.name = 'Client ' + [*('a'..'z'), *('A'..'Z'), *('0'..'9')].sample(6).join
+    client.name = [*
+      "Iris Moore",
+      "Juanita Hamilton",
+      "Jerry Allen",
+      "Fannie Burke",
+      "Kurt Briggs",
+      "Nichole Padilla",
+      "Kendra Casey",
+      "Kyle Steele",
+      "Lela Bowman",
+      "Connie Roy",
+      "Wendell Bass",
+      "Nick Walker",
+      "Grady Stewart",
+      "Randolph Allison",
+      "Tonya Graves",
+      "Angel Newman",
+      "Sonya Quinn",
+      "Aubrey Nash",
+      "Traci Morris",
+      "Dustin Lambert",
+      "Marion Gonzales",
+      "Jeanne Figueroa",
+      "Mike Blair",
+      "Randal Singleton",
+      "Willis Hale"
+    ].sample
     client.phone = [*('0'..'9')].sample(10).join
     client.save
   end
@@ -80,7 +106,8 @@ Store.all.each do |store|
     [*(1..5)].sample.times do
       item = order.order_items.new
       item.price        = [*(1..100)].sample
-      item.cloth_title = [*('a'..'z'), *('A'..'Z'), *('0'..'9')].sample(10).join
+      item.cloth_title  = [*('a'..'z'), *('A'..'Z'), *('0'..'9')].sample(10).join
+      item.status       = [*(0..2)].sample
       item.save
     end
   end
@@ -94,4 +121,4 @@ Group.all.each do |group|
   end
 end
 
-OrderItem.where(status: 2).update_all(fetched_at: Time.now())
+OrderItem.where(status: OrderItem.statuses[:out]).update_all(fetched_at: Time.now())

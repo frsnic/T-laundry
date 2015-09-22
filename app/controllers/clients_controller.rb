@@ -48,7 +48,8 @@ class ClientsController < ApplicationController
 
   def held
     @client = @store.clients.find(params[:id])
-    @items  = @client.order_items.order(:status, :order_id, :id)
+    @finished_items = @client.order_items.where(status: OrderItem.statuses[:finish]).order(:order_id, :id)
+    @nofinish_items = @client.order_items.where.not(status: OrderItem.statuses[:finish]).order('status, fetched_at desc, id')
   end
 
   def fetch

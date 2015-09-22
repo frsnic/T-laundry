@@ -14,8 +14,8 @@
         <th>Created At</th>
       </thead>
       <tbody>
-        <% orders = @items.pluck(:order_id).uniq %>
-        <% @items.select {|e| e.finish? }.each do |item| %>
+        <% orders = @finished_items.pluck(:order_id).uniq %>
+        <% @finished_items.each do |item| %>
           <%= content_tag :tr, class: (orders.find_index(item.order_id).odd? ? "fields odd" : "fields") do %>
             <td><%= check_box_tag "items[]", item.id.to_i %></td>
             <td><%= item.order_id %></td>
@@ -40,7 +40,7 @@
       <th>Created At</th>
     </thead>
     <tbody>
-      <% @items.select {|e| !e.finish? }.each do |item| %>
+      <% @nofinish_items.each do |item| %>
         <%= content_tag :tr, class: (item.out? ? "fields odd" : "fields") do %>
           <td><%= strftime(item.fetched_at) %></td>
           <td><%= item.order_id %></td>
