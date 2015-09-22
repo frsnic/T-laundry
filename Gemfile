@@ -45,6 +45,10 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  gem 'sqlite3'
+end
+
 gem 'devise'
 
 gem "rspec-rails"
