@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/frsnic/T-laundry.svg?branch=master)](https://travis-ci.org/frsnic/T-laundry)
 
-![alt tag](https://github.com/frsnic/T-laundry/blob/master/erd.png)
+![T-laundry](https://raw.githubusercontent.com/frsnic/T-laundry/master/erd.png)
 
 #### Useage
 ```ruby
