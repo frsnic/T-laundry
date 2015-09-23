@@ -62,3 +62,7 @@ gem 'pundit'
 gem 'simple_form'
 
 gem 'nested_form'
+
+gem 'rails-erd'
+
+gem 'ransack'
