@@ -1,3 +1,6 @@
 language: ruby
 rvm:
   - 2.2.1
+before_script:
+  - export SECRET_KEY_BASE="$(bundle exec rake secret)"
+  - rake dev:rebuild
