@@ -10,7 +10,7 @@ class Order < ActiveRecord::Base
   accepts_nested_attributes_for :order_items, allow_destroy: true
 
   def status
-    return OrderItem.statuses.index(self.order_items.pluck(:status).uniq.min)
+    return OrderItem.statuses.key(self.order_items.pluck(:status).uniq.min)
   end
 
   def fetched_at
