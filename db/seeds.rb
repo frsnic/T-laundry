@@ -10,57 +10,57 @@ users = [{
     name: 'admin',
     role: User.roles["admin"]
   }, {
-    email: 'group@gmail.com',
-    password: 'groupgroup',
-    password_confirmation: 'groupgroup',
-    name: 'group_manager',
-    role: User.roles["group_manager"]
-  }, {
-    email: 'store@gmail.com',
-    password: 'storestore',
-    password_confirmation: 'storestore',
-    name: 'store_manager',
-    role: User.roles["store_manager"]
-  }, {
     email: 'client@gmail.com',
     password: 'clientclient',
     password_confirmation: 'clientclient',
     name: 'client',
     role: User.roles["client"]
+  }, {
+    email: 'no_store@gmail.com',
+    password: 'no_storeno_store',
+    password_confirmation: 'no_storeno_store',
+    name: 'No Store',
+    role: User.roles["store_manager"]
+  }, {
+    email: 'no_group@gmail.com',
+    password: 'no_groupno_group',
+    password_confirmation: 'no_groupno_group',
+    name: 'No Group',
+    role: User.roles["group_manager"]
   },
 ]
 
 users = users.each { |user| User.create!(user) }
 
-frsnicg = User.create({
-  email: 'frsnicg@gmail.com',
-  password: 'frsnicgfrsnicg',
-  password_confirmation: 'frsnicgfrsnicg',
-  name: 'frsnicg',
+chuck = User.create({
+  email: 'chuck@gmail.com',
+  password: 'chuckchuck',
+  password_confirmation: 'chuckchuck',
+  name: 'Chuck',
   role: User.roles["group_manager"]
 })
 
-frsnics = User.create({
-  email: 'frsnics@gmail.com',
-  password: 'frsnicsfrsnics',
-  password_confirmation: 'frsnicsfrsnics',
-  name: 'frsnics',
+sarah = User.create({
+  email: 'sarah@gmail.com',
+  password: 'sarahsarah',
+  password_confirmation: 'sarahsarah',
+  name: 'Sarah',
   role: User.roles["store_manager"]
 })
 
-frsnic_group = Group.create({
-  title: 'frsnic group',
+chuck_group = Group.create({
+  title: 'Chuck Group',
   precision: 0
 })
 
-frsnicg.groups << frsnic_group
+chuck.groups << chuck_group
 
-frsnics_store = Store.create({
-  title: 'frsnics store',
-  group_id: frsnic_group.id
+sarah_store = Store.create({
+  title: 'Sarah Store',
+  group_id: chuck_group.id
 })
 
-frsnics.stores << frsnics_store
+sarah.stores << sarah_store
 
 Store.all.each do |store|
   20.times do
