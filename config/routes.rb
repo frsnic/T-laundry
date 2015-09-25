@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get 'errors/error404'
+
   devise_for :users
 
   namespace :account do
@@ -23,6 +25,11 @@ Rails.application.routes.draw do
       end
     end
   end
+
+  match "/403" => "errors#error403", via: :all
+  match "/404" => "errors#error404", via: :all
+  match "/422" => "errors#error422", via: :all
+  match "/500" => "errors#error500", via: :all
 
   root 'home#index'
 

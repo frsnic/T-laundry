@@ -1,0 +1,9 @@
+<div class="col-md-offset-5 col-md-2 text-center">
+  <h1><%= response.status %></h1>
+  <p>
+    <h4><%= response.status_message %> ...</h4>
+  </p>
+  <hr>
+
+  <%= link_to 'Back', request.referrer || root_path, class: "btn btn-default" %>
+</div>
