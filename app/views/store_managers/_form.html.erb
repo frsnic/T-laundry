@@ -1,6 +1,6 @@
 <%= simple_form_for @manager, url: "/stores/#{@store.id}/managers/#{@manager.id}" do |f| %>
   <div class="form-store">
-    <%= f.input :name,  input_html: { class: "form-control"}, autofocus: true %>
+    <%= f.input :name,  input_html: { class: "form-control"}, autofocus: true, required: true %>
     <%= f.input :email, required: true %>
     <% unless @manager.id %>
       <%= f.input :password, autocomplete: "off", required: true %>
