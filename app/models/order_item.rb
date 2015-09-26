@@ -13,7 +13,4 @@ class OrderItem < ActiveRecord::Base
     self.status ||= :processing
   end
 
-  def is_fetch
-  end
-
 end

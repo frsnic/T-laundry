@@ -2,13 +2,17 @@ require "rails_helper"
 
 RSpec.describe GroupUser do
 
-  it "create" do
-    group_user = GroupUser.create({
-      user_id: 1,
-      group_id: 1
-    })
+  it "has none to begin with" do
+    expect(GroupUser.count).to eq 0
+  end
 
-    expect(group_user.valid?).to eq(true)
+  it "has one after adding one" do
+    GroupUser.create(group_id: 1, user_id: 1)
+    expect(GroupUser.count).to eq 1
+  end
+
+  it "has none after one was created in a previous example" do
+    expect(GroupUser.count).to eq 0
   end
 
 end
