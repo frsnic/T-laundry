@@ -10,6 +10,7 @@ describe GroupPolicy do
     pending "add some examples to (or delete) #{__FILE__}"
   end
 
+=begin
   permissions :show? do
     pending "add some examples to (or delete) #{__FILE__}"
   end
@@ -25,4 +26,6 @@ describe GroupPolicy do
   permissions :destroy? do
     pending "add some examples to (or delete) #{__FILE__}"
   end
+=end
+
 end

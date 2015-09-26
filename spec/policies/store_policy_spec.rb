@@ -10,6 +10,7 @@ describe StorePolicy do
     pending "add some examples to (or delete) #{__FILE__}"
   end
 
+=begin
   permissions :show? do
     pending "add some examples to (or delete) #{__FILE__}"
   end
@@ -25,4 +26,6 @@ describe StorePolicy do
   permissions :destroy? do
     pending "add some examples to (or delete) #{__FILE__}"
   end
+=end
+
 end
