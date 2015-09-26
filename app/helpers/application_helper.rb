@@ -28,7 +28,7 @@ module ApplicationHelper
   end
 
   def strftime(datetime)
-    return datetime && datetime.class == ActiveSupport::TimeWithZone ? datetime.strftime('%F %R 星期%w') : ""
+    return datetime && [ActiveSupport::TimeWithZone, Time].include?(datetime.class) ? datetime.strftime('%F %R 星期%w') : ""
   end
 
   def currency(price, precision)
