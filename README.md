@@ -4,6 +4,9 @@
 
 ![T-laundry](https://raw.githubusercontent.com/frsnic/T-laundry/master/erd.png)
 
+#### About
+It's a laundry order control system.
+
 #### Useage
 ```ruby
 rake dev:rebuild
