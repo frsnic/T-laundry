@@ -28,6 +28,7 @@
                 <li><%= link_to("New Manager", new_group_manager_path(group)) %></li>
                 <li><%= link_to("New Store", new_group_store_path(group)) %></li>
                 <li><%= link_to("New Cloth", new_group_cloth_path(group)) %></li>
+                <li><%= link_to("Show Cloths", '#', onclick: "$('#cloths_' + #{group.id}).toggleClass('hide'); $(this).text($(this).text() == 'Show Cloths' ? 'Hide Cloths' : 'Show Cloths')") %></li>
               </ul>
             </div>
           </div>
@@ -58,7 +59,7 @@
         </div>
 
         <div class="col-md-12">
-          <table class="table table-hover">
+          <%= content_tag :table, id: "cloths_" + group.id.to_s, class: "table table-hover hide" do %>
             <thead>
               <tr>
                 <td>#</td>
@@ -77,7 +78,7 @@
                 </tr>
               <% end %>
             </tbody>
-          </table>
+          <% end %>
         </div>
       </div>
     </div>
