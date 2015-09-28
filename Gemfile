@@ -49,6 +49,10 @@ group :development do
 
   gem 'rails-erd', require: false
 
+  gem 'bullet'
+
+  gem 'lol_dba'
+
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem "capistrano", require: false
