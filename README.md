@@ -2,10 +2,10 @@
 
 [![Build Status](https://travis-ci.org/frsnic/T-laundry.svg?branch=master)](https://travis-ci.org/frsnic/T-laundry)
 
-![T-laundry](https://raw.githubusercontent.com/frsnic/T-laundry/master/erd.png)
-
 #### About
 It's a laundry order control system.
+
+![T-laundry](https://raw.githubusercontent.com/frsnic/T-laundry/master/erd.png)
 
 #### Useage
 ```ruby
