@@ -55,7 +55,7 @@ class ClientsController < ApplicationController
   def fetch
     @client = @store.clients.find(params[:id])
     array = []
-    params[:items].each_with_index {|item, index| array << item.to_i }
+    (params[:items] || []).each_with_index {|item, index| array << item.to_i }
     @items = (@client.order_items.pluck(:id)) & array
     OrderItem.where(id: @items).update_all(status: OrderItem.statuses[:out], fetched_at: Time.now())
 
