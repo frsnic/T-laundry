@@ -1,0 +1,6 @@
+  <h2><%= @client.name %></h2>
+  <ul>
+    <li>電話：<%= @client.phone %></li>
+    <li>地址：<%= @client.address %></li>
+    <li>餘額：<%= currency(@client.balance, @store.group.precision) %></li>
+  </ul>

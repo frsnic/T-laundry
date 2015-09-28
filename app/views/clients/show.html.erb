@@ -7,12 +7,7 @@
       <%= link_to("Fetch", held_store_client_path(@store, @client), class: "btn btn-warning pull-right") %>
     <% end %>
   </div>
-  <h2><%= @client.name %></h2>
-  <ul>
-    <li>電話：<%= @client.phone %></li>
-    <li>地址：<%= @client.address %></li>
-    <li>餘額：<%= currency(@client.balance, @store.group.precision) %></li>
-  </ul>
+  <%= render 'detail' %>
 </div>
 
 <div class="col-md-12 bottom-buffer">

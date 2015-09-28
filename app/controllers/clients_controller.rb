@@ -59,10 +59,16 @@ class ClientsController < ApplicationController
 
   def fetch
     @client = @store.clients.find(params[:id])
+    redirect_to held_store_client_path(@store, @client) and return if params[:items].blank?
+
     array = []
-    (params[:items] || []).each_with_index {|item, index| array << item.to_i }
-    @items = (OrderItem.includes(:order).where(orders: { client_id: @client.id }).pluck(:id)) & array
-    OrderItem.where(id: @items).update_all(status: OrderItem.statuses[:out], fetched_at: Time.now())
+    params[:items].each_with_index {|item, index| array << item.to_i }
+    item_array = (OrderItem.includes(:order).where(orders: { client_id: @client.id }).pluck(:id)) & array
+    @items = OrderItem.where(id: item_array)
+    @items.update_all(status: OrderItem.statuses[:out], fetched_at: Time.now())
+
+    @client.balance = @client.balance - @items.sum(:price) + params[:receive].to_d
+    @client.save
 
     redirect_to held_store_client_path(@store, @client), notice: "取件成功"
   end

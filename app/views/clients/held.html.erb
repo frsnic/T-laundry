@@ -1,35 +1,55 @@
-<div class="col-md-6 col-md-offset-3">
+<div class="col-md-offset-2 col-md-2">
+  <%= render "clients/detail", :locals => { store: @store, client: @client } %>
+</div>
+
+<div class="col-md-6">
   <h1>取件</h1>
   <hr>
 
-  <%= form_tag fetch_store_client_path(@store, @client) do |f| %>
-    <%= submit_tag("Fetch", class: "btn btn-warning") %>
-    <table class="table top-buffer">
-      <thead>
-        <th></th>
-        <th>Order Id</th>
-        <th>Cloth</th>
-        <th>Price</th>
-        <th>Status</th>
-        <th>Created At</th>
-      </thead>
-      <tbody>
-        <% orders = @finished_items.pluck(:order_id).uniq %>
-        <% @finished_items.each do |item| %>
-          <%= content_tag :tr, class: (orders.find_index(item.order_id).odd? ? "fields odd" : "fields") do %>
-            <td><%= check_box_tag "items[]", item.id.to_i %></td>
-            <td><%= item.order_id %></td>
-            <td><%= item.cloth_title %></td>
-            <td><%= currency(item.price, @store.group.precision) %></td>
-            <td><%= item.status %></td>
-            <td><%= strftime(item.created_at) %></td>
+  <% if @finished_items.present? %>
+    <%= form_tag fetch_store_client_path(@store, @client) do |f| %>
+      <div class="row">
+        <div class="col-md-3">
+          <div class="input-group">
+            <span class="input-group-btn">
+              <button class="btn btn-default" type="button">實收：</button>
+            </span>
+            <%= text_field_tag :receive, 0, type: "number", class: "form-control", required: true %>
+          </div>
+        </div>
+        <div class="col-md-9">
+          <%= submit_tag("Fetch", class: "btn btn-warning") %>
+        </div>
+      </div>
+      <table class="table top-buffer">
+        <thead>
+          <th></th>
+          <th>Order Id</th>
+          <th>Cloth</th>
+          <th>Price</th>
+          <th>Status</th>
+          <th>Created At</th>
+        </thead>
+        <tbody>
+          <% orders = @finished_items.pluck(:order_id).uniq %>
+          <% @finished_items.each do |item| %>
+            <%= content_tag :tr, class: (orders.find_index(item.order_id).odd? ? "fields odd" : "fields") do %>
+              <td><%= check_box_tag "items[]", item.id.to_i %></td>
+              <td><%= item.order_id %></td>
+              <td><%= item.cloth_title %></td>
+              <td><%= currency(item.price, @store.group.precision) %></td>
+              <td><%= item.status %></td>
+              <td><%= strftime(item.created_at) %></td>
+            <% end %>
           <% end %>
-        <% end %>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    <% end %>
+  <% else %>
+    <h3>No cloths.</h3>
   <% end %>
-
   <hr>
+
   <table class="table top-buffer">
     <thead>
       <th>Feteh At</th>
