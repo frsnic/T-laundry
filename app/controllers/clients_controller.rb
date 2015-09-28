@@ -48,15 +48,20 @@ class ClientsController < ApplicationController
 
   def held
     @client = @store.clients.find(params[:id])
-    @finished_items = @client.order_items.where(status: OrderItem.statuses[:finish]).order(:order_id, :id)
-    @nofinish_items = @client.order_items.where.not(status: OrderItem.statuses[:finish]).order('status, fetched_at desc, id')
+    @finished_items = OrderItem.includes(:order)
+      .where(orders: { client_id: @client.id }, status: OrderItem.statuses[:finish])
+      .order(:order_id, :id)
+    @nofinish_items = OrderItem.joins(:order)
+      .where(orders: { client_id: @client.id })
+      .where.not(status: OrderItem.statuses[:finish])
+      .order('status, fetched_at desc, id')
   end
 
   def fetch
     @client = @store.clients.find(params[:id])
     array = []
     (params[:items] || []).each_with_index {|item, index| array << item.to_i }
-    @items = (@client.order_items.pluck(:id)) & array
+    @items = (OrderItem.includes(:order).where(orders: { client_id: @client.id }).pluck(:id)) & array
     OrderItem.where(id: @items).update_all(status: OrderItem.statuses[:out], fetched_at: Time.now())
 
     redirect_to held_store_client_path(@store, @client), notice: "取件成功"
