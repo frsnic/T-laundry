@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150922093804) do
+ActiveRecord::Schema.define(version: 20150928011143) do
 
   create_table "clients", force: :cascade do |t|
     t.integer  "store_id",                                         null: false
@@ -23,6 +23,8 @@ ActiveRecord::Schema.define(version: 20150922093804) do
     t.datetime "updated_at",                                       null: false
   end
 
+  add_index "clients", ["store_id"], name: "index_clients_on_store_id"
+
   create_table "cloths", force: :cascade do |t|
     t.string   "title",      null: false
     t.integer  "group_id",   null: false
@@ -30,12 +32,18 @@ ActiveRecord::Schema.define(version: 20150922093804) do
     t.datetime "updated_at", null: false
   end
 
+  add_index "cloths", ["group_id"], name: "index_cloths_on_group_id"
+
   create_table "group_users", force: :cascade do |t|
     t.integer  "group_id",   null: false
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "group_users", ["group_id", "user_id"], name: "index_group_users_on_group_id_and_user_id"
+  add_index "group_users", ["group_id"], name: "index_group_users_on_group_id"
+  add_index "group_users", ["user_id"], name: "index_group_users_on_user_id"
 
   create_table "groups", force: :cascade do |t|
     t.string   "title",                  null: false
@@ -54,6 +62,8 @@ ActiveRecord::Schema.define(version: 20150922093804) do
     t.datetime "fetched_at"
   end
 
+  add_index "order_items", ["order_id"], name: "index_order_items_on_order_id"
+
   create_table "orders", force: :cascade do |t|
     t.integer  "store_id",                                         null: false
     t.integer  "client_id",                                        null: false
@@ -63,12 +73,21 @@ ActiveRecord::Schema.define(version: 20150922093804) do
     t.datetime "updated_at",                                       null: false
   end
 
+  add_index "orders", ["client_id"], name: "index_orders_on_client_id"
+  add_index "orders", ["store_id", "client_id"], name: "index_orders_on_store_id_and_client_id"
+  add_index "orders", ["store_id"], name: "index_orders_on_store_id"
+  add_index "orders", ["user_id"], name: "index_orders_on_user_id"
+
   create_table "store_users", force: :cascade do |t|
     t.integer  "store_id",   null: false
     t.integer  "user_id",    null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_index "store_users", ["store_id", "user_id"], name: "index_store_users_on_store_id_and_user_id"
+  add_index "store_users", ["store_id"], name: "index_store_users_on_store_id"
+  add_index "store_users", ["user_id"], name: "index_store_users_on_user_id"
 
   create_table "stores", force: :cascade do |t|
     t.string   "title",      null: false
@@ -79,6 +98,8 @@ ActiveRecord::Schema.define(version: 20150922093804) do
     t.string   "landline"
     t.string   "location"
   end
+
+  add_index "stores", ["group_id"], name: "index_stores_on_group_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
