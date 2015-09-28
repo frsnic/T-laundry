@@ -17,6 +17,7 @@ public/assets/
 config/initializers/secret_token.rb
 config/deploy.rb
 config/deploy/*
+config/email.yml
 
 ## Environment normalisation:
 /.bundle

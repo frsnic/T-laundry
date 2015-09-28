@@ -73,3 +73,5 @@ gem 'nested_form'
 gem 'ransack'
 
 gem 'will_paginate'
+
+gem 'exception_notification'
