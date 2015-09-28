@@ -3,7 +3,7 @@ class Account::StoresController < ApplicationController
   before_action :authorize_manager!
 
   def index
-    @stores = policy_scope(Store).order('group_id ASC')
+    @stores = policy_scope(Store).includes(:store_managers, :group).order('group_id ASC')
   end
 
 end

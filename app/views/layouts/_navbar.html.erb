@@ -31,7 +31,7 @@
               </a>
               <ul class="dropdown-menu">
                 <li><%= link_to("商店管理員", account_stores_path) %></li>
-                <% policy(:store).stores.order('group_id ASC').each do |store| %>
+                <% policy(:store).stores.includes(:group).order('group_id ASC').each do |store| %>
                   <li><%= link_to(store.title, group_store_path(store.group, store)) %></li>
                 <% end %>
               </ul>
