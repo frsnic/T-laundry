@@ -3,7 +3,7 @@ class Account::GroupsController < ApplicationController
   before_action :authorize_group_manager!
 
   def index
-    @groups = policy_scope(Group).includes(:group_managers, :cloths)
+    @groups = policy_scope(Group).includes(:group_managers, cloths: :cloth_ways)
   end
 
 end

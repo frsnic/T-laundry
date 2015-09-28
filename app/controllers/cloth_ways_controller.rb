@@ -1,0 +1,2 @@
+class ClothWaysController < ApplicationController
+end

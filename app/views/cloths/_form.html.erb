@@ -1,6 +1,26 @@
-<%= simple_form_for [@group, @cloth] do |f| %>
-  <div class="form-cloth">
-    <%= f.input :title,    input_html: { class: "form-control"}, autofocus: true, required: true %>
+<%= simple_nested_form_for [@group, @cloth] do |f| %>
+  <div id="cloth_ways" class="form">
+    <%= f.input :title, autofocus: true, required: true, label: false, placeholder: 'Cloth Title' %>
+    <div class="top-buffer">
+      <div class="row">
+        <div class="col-md-2">
+          <%= f.link_to_add "Add Cloth Way", :cloth_ways, :data => { :target => "#cloth_ways" }, class: "btn btn-success bottom-buffer" %>
+        </div>
+      </div>
+      <div class="row text-center">
+        <div class="col-md-5"><h4>Title</h4></div>
+        <div class="col-md-5"><h4>Price</h4></div>
+      </div>
+      <%= f.simple_fields_for :cloth_ways, :wrapper => false do |cloth_way| %>
+        <div class="row fields">
+          <div class="col-md-5"><%= cloth_way.input :title, label: false %></div>
+          <div class="col-md-5"><%= cloth_way.input :price, label: false %></div>
+          <div class="col-md-2"><%= cloth_way.link_to_remove "Remove", class: 'btn btn-danger' %></div>
+        </div>
+      <% end %>
+    </div>
   </div>
-  <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting..." } %>
+  <div class="row text-center top-buffer">
+    <%= f.submit "Submit", class: "btn btn-primary", data: { disable_with: "Submitting..." } %>
+  </div>
 <% end %>

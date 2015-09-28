@@ -64,6 +64,7 @@
               <tr>
                 <td>#</td>
                 <td>Cloth Title</td>
+                <td>Price</td>
               </tr>
             </thead>
             <tbody>
@@ -71,6 +72,11 @@
                 <tr>
                   <td><%= index + 1 %></td>
                   <td><%= link_to(cloth.title, group_cloth_path(group, cloth)) %></td>
+                  <td>
+                    <% cloth.cloth_ways.each do |cloth_way| %>
+                      <%= cloth_way.title %>：<%= currency(cloth_way.price, group.precision) %><br>
+                    <% end %>
+                  </td>
                   <td>
                     <%= link_to("Edit", edit_group_cloth_path(group, cloth), class: "btn btn-sm btn-primary") %>
                     <%= link_to("Delete", group_cloth_path(group, cloth), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } ) %>

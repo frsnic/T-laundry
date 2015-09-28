@@ -5,7 +5,7 @@ class ClothsController < ApplicationController
   before_action :find_group
 
   def show
-    @cloth = @group.cloths.find(params[:id])
+    @cloth = @group.cloths.includes(:cloth_ways).find(params[:id])
   end
 
   def new
@@ -46,7 +46,8 @@ class ClothsController < ApplicationController
   private
 
   def cloth_params
-    params.require(:cloth).permit(:title)
+    params.require(:cloth).permit(:title,
+      cloth_ways_attributes: [:id, :title, :price, :_destroy])
   end
 
   def find_group
