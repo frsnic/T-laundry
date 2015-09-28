@@ -7,8 +7,8 @@
   </div>
   <h2><%= @cloth.title %></h2>
   <ul>
-    <% @cloth.cloth_ways.each do |cloth_way| %>
-      <li><%= cloth_way.title %>：<%= currency(cloth_way.price, @group.precision) %></li>
+    <% @cloth.wash_ways.each do |wash_way| %>
+      <li><%= wash_way.title %>：<%= currency(wash_way.price, @group.precision) %></li>
     <% end %>
   </ul>
 </div>

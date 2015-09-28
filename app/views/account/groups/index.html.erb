@@ -73,8 +73,8 @@
                   <td><%= index + 1 %></td>
                   <td><%= link_to(cloth.title, group_cloth_path(group, cloth)) %></td>
                   <td>
-                    <% cloth.cloth_ways.each do |cloth_way| %>
-                      <%= cloth_way.title %>：<%= currency(cloth_way.price, group.precision) %><br>
+                    <% cloth.wash_ways.each do |wash_way| %>
+                      <%= wash_way.title %>：<%= currency(wash_way.price, group.precision) %><br>
                     <% end %>
                   </td>
                   <td>

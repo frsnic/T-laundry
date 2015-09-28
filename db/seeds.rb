@@ -145,9 +145,9 @@ Group.all.each do |group|
     cloth = group.cloths.new
     cloth.title = 'Cloth ' + (index + 1).to_s
     cloth.save
-    cloth.cloth_ways.create({ title: "水洗", price: [*(1..100)].sample })
-    cloth.cloth_ways.create({ title: "乾洗", price: [*(1..100)].sample })
-    cloth.cloth_ways.create({ title: "熨燙", price: [*(1..100)].sample })
+    cloth.wash_ways.create({ title: "水洗", price: [*(1..100)].sample })
+    cloth.wash_ways.create({ title: "乾洗", price: [*(1..100)].sample })
+    cloth.wash_ways.create({ title: "熨燙", price: [*(1..100)].sample })
   end
 end
 
