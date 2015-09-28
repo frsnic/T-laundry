@@ -48,19 +48,45 @@ sarah = User.create({
   role: User.roles["store_manager"]
 })
 
+casey = User.create({
+  email: 'casey@gmail.com',
+  password: 'caseycasey',
+  password_confirmation: 'caseycasey',
+  name: 'Casey',
+  role: User.roles["store_manager"]
+})
+
+morgan = User.create({
+  email: 'morgan@gmail.com',
+  password: 'morganmorgan',
+  password_confirmation: 'morganmorgan',
+  name: 'Morgan',
+  role: User.roles["group_manager"]
+})
+
 chuck_group = Group.create({
   title: 'Chuck Group',
   precision: 0
 })
-
 chuck.groups << chuck_group
+
+morgan_group = Group.create({
+  title: 'Morgan Group',
+  precision: 2
+})
+morgan.groups << morgan_group
 
 sarah_store = Store.create({
   title: 'Sarah Store',
   group_id: chuck_group.id
 })
-
 sarah.stores << sarah_store
+
+casey_store = Store.create({
+  title: 'Casey Store',
+  group_id: chuck_group.id
+})
+casey.stores << casey_store
 
 Store.all.each do |store|
   20.times do
@@ -92,7 +118,7 @@ Store.all.each do |store|
       "Randal Singleton",
       "Willis Hale"
     ].sample
-    client.phone = [*('0'..'9')].sample(10).join
+    client.phone = '09' + [*('0'..'9')].sample(8).join
     client.save
   end
 end

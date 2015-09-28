@@ -51,7 +51,7 @@ group :development do
 
   gem 'bullet'
 
-  gem 'lol_dba'
+  gem 'lol_dba', require: false
 
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
