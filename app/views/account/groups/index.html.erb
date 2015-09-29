@@ -27,15 +27,13 @@
                 <% end %>
                 <li><%= link_to("New Manager", new_group_manager_path(group)) %></li>
                 <li><%= link_to("New Store", new_group_store_path(group)) %></li>
-                <li><%= link_to("New Cloth", new_group_cloth_path(group)) %></li>
-                <li><%= link_to("Show Cloths", '#', onclick: "$('#cloths_' + #{group.id}).toggleClass('hide'); $(this).text($(this).text() == 'Show Cloths' ? 'Hide Cloths' : 'Show Cloths')") %></li>
               </ul>
             </div>
           </div>
         </div>
       </div>
       <div class="panel-body">
-        <div class="col-md-12 bottom-buffer">
+        <div class="col-md-12">
           <table class="table table-hover">
             <thead>
               <tr>
@@ -58,6 +56,10 @@
           </table>
         </div>
 
+        <div class="col-md-12 bottom-buffer">
+          <%= link_to("Show Cloths", '#', onclick: "$('#cloths_' + #{group.id}).toggleClass('hide'); $(this).text($(this).text() == 'Show Cloths' ? 'Hide Cloths' : 'Show Cloths')", class: "btn btn-primary") %>
+          <%= link_to("New Cloth", new_group_cloth_path(group), class: "btn btn-success") %>
+        </div>
         <div class="col-md-12">
           <%= content_tag :table, id: "cloths_" + group.id.to_s, class: "table table-hover hide" do %>
             <thead>

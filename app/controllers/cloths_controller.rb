@@ -10,6 +10,10 @@ class ClothsController < ApplicationController
 
   def new
     @cloth = @group.cloths.new
+    3.times { @cloth.wash_ways.build }
+    @cloth.wash_ways[0].title = "水洗"
+    @cloth.wash_ways[1].title = "乾洗"
+    @cloth.wash_ways[2].title = "熨燙"
   end
 
   def create
