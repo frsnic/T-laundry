@@ -19,8 +19,8 @@ RSpec.describe Order, type: :model do
 
     before(:each) do
       @order = Order.create(store_id: 1, client_id: 1, user_id: 1)
-      OrderItem.create(order_id: @order.id, cloth_title: 'Cloth Title')
-      OrderItem.create(order_id: @order.id, cloth_title: 'Cloth Title')
+      OrderItem.create(order_id: @order.id, cloth_title: 'Cloth Title', wash_way: SecureRandom.hex)
+      OrderItem.create(order_id: @order.id, cloth_title: 'Cloth Title', wash_way: SecureRandom.hex)
     end
 
     describe ", order initialize" do

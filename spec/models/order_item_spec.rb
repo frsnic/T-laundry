@@ -7,7 +7,7 @@ RSpec.describe OrderItem, type: :model do
   end
 
   it "has one after adding one" do
-    OrderItem.create(order_id: 1, cloth_title: 'Cloth Title')
+    OrderItem.create(order_id: 1, cloth_title: 'Cloth Title', wash_way: SecureRandom.hex)
     expect(OrderItem.count).to eq 1
   end
 
