@@ -123,9 +123,9 @@ Store.all.each do |store|
   end
 end
 
-Group.all.each do |group|
+Store.all.each do |store|
   30.times do |index|
-    cloth = group.cloths.new
+    cloth = store.cloths.new
     cloth.title = 'Cloth ' + (index + 1).to_s
     cloth.save
     cloth.wash_ways.create({ title: "水洗", price: [*(1..100)].sample })
@@ -146,8 +146,8 @@ Store.all.each do |store|
     [*(1..5)].sample.times do
       item = order.order_items.new
       item.price        = [*(1..100)].sample
-      item.cloth_title  = [*(store.group.cloths.pluck(:title))].sample
-      item.wash_way     = [*(store.group.cloths.find_by_title(item.cloth_title).wash_ways.pluck(:title))].sample
+      item.cloth_title  = [*(store.cloths.pluck(:title))].sample
+      item.wash_way     = [*(store.cloths.find_by_title(item.cloth_title).wash_ways.pluck(:title))].sample
       item.status       = [*(0..2)].sample
       item.save
     end

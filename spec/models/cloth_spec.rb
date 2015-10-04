@@ -7,7 +7,7 @@ RSpec.describe Cloth, type: :model do
   end
 
   it "has one after adding one" do
-    Cloth.create(title: 'Cloth Title', group_id: 1)
+    Cloth.create(title: 'Cloth Title', store_id: 1)
     expect(Cloth.count).to eq 1
   end
 

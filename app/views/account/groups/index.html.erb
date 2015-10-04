@@ -55,39 +55,6 @@
             </tbody>
           </table>
         </div>
-
-        <div class="col-md-12 bottom-buffer">
-          <%= link_to("Show Cloths", '#', onclick: "$('#cloths_' + #{group.id}).toggleClass('hide'); $(this).text($(this).text() == 'Show Cloths' ? 'Hide Cloths' : 'Show Cloths')", class: "btn btn-primary") %>
-          <%= link_to("New Cloth", new_group_cloth_path(group), class: "btn btn-success") %>
-        </div>
-        <div class="col-md-12">
-          <%= content_tag :table, id: "cloths_" + group.id.to_s, class: "table table-hover hide" do %>
-            <thead>
-              <tr>
-                <td>#</td>
-                <td>Cloth Title</td>
-                <td>Price</td>
-              </tr>
-            </thead>
-            <tbody>
-              <% group.cloths.each_with_index do |cloth, index| %>
-                <tr>
-                  <td><%= index + 1 %></td>
-                  <td><%= link_to(cloth.title, group_cloth_path(group, cloth)) %></td>
-                  <td>
-                    <% cloth.wash_ways.each do |wash_way| %>
-                      <%= wash_way.title %>：<%= currency(wash_way.price, group.precision) %><br>
-                    <% end %>
-                  </td>
-                  <td>
-                    <%= link_to("Edit", edit_group_cloth_path(group, cloth), class: "btn btn-sm btn-primary") %>
-                    <%= link_to("Delete", group_cloth_path(group, cloth), class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } ) %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
-          <% end %>
-        </div>
       </div>
     </div>
   <% end %>

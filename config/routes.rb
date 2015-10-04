@@ -12,12 +12,12 @@ Rails.application.routes.draw do
   resources :groups do
     resources :stores
     resources :managers, :controller => "group_managers"
-    resources :cloths
   end
 
   resources :stores do
     resources :managers, :controller => "store_managers"
     resources :orders
+    resources :cloths
     resources :clients do
       member do
         get 'held'

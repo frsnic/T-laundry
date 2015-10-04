@@ -1,16 +1,14 @@
 <div class="col-md-12 bottom-buffer">
   <div class="cloth">
-    <% if policy(:group).group_manager? %>
-      <%= link_to("Delete", group_cloth_path(@group, @cloth), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } ) %>
-      <%= link_to("Edit", edit_group_cloth_path(@group, @cloth), class: "btn btn-primary pull-right") %>
-    <% end %>
+    <%= link_to("Delete", store_cloth_path(@store, @cloth), class: "btn btn-danger pull-right", method: :delete, data: { confirm: "Are you sure?" } ) %>
+    <%= link_to("Edit", edit_store_cloth_path(@store, @cloth), class: "btn btn-primary pull-right") %>
   </div>
   <h2><%= @cloth.title %></h2>
   <ul>
     <% @cloth.wash_ways.each do |wash_way| %>
-      <li><%= wash_way.title %>：<%= currency(wash_way.price, @group.precision) %></li>
+      <li><%= wash_way.title %>：<%= currency(wash_way.price, @store.group.precision) %></li>
     <% end %>
   </ul>
 </div>
 
-<%= link_to('群組列表', account_groups_path, class: "btn btn-default") %>
+<%= link_to('商店列表', account_stores_path, class: "btn btn-default") %>
