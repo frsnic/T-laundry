@@ -9,26 +9,5 @@
   </div>
   <h2><%= @group.title %></h2>
 
-  <table class="table table-hover">
-    <thead>
-      <tr>
-        <td>#</td>
-        <td>Title</td>
-      </tr>
-    </thead>
-    <tbody>
-      <% @group.stores.each_with_index do |store, index| %>
-        <tr>
-          <td><%= index + 1 %></td>
-          <td><%= link_to(truncate(store.title, length: 15), group_store_path(@group, store)) %></td>
-          <td>
-            <% if policy(:store).group_manager? %>
-              <%= link_to("Edit", edit_group_store_path(store.group, store), class: "btn btn-sm btn-primary") %>
-              <%= link_to("Delete", group_store_path(store.group, store),    class: "btn btn-sm btn-danger", method: :delete, data: { confirm: "Are you sure?" } ) %>
-            <% end %>
-          </td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render "stores", stores: @group.stores %>
 </div>
