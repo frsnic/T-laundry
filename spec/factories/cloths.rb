@@ -1,7 +1,8 @@
 FactoryGirl.define do
+
   factory :cloth do
-    title "MyString"
-group_id 1
+    title Faker::Name.name
+    store_id Faker::Number.digit
   end
 
 end
