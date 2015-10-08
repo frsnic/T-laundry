@@ -1,7 +1,7 @@
 FactoryGirl.define do
 
-  factory :store_user do
-    store_id Faker::Number.digit
+  factory :group_user do
+    group_id Faker::Number.digit
     user_id  Faker::Number.digit
   end
 

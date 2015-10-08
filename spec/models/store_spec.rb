@@ -1,18 +1,17 @@
-require 'rails_helper'
+require "rails_helper"
 
-RSpec.describe Store, type: :model do
+RSpec.describe StoreUser do
 
-  it "has none to begin with" do
-    expect(Store.count).to eq 0
+  it "has a valid factory" do
+    expect(FactoryGirl.create(:store_user).valid?).to be true
   end
 
-  it "has one after adding one" do
-    Store.create(title: SecureRandom.hex, group_id: 1)
-    expect(Store.count).to eq 1
+  it "is invalid without a store_id" do
+    expect(FactoryGirl.build(:store_user, store_id: nil).valid?).to be false
   end
 
-  it "has none after one was created in a previous example" do
-    expect(Store.count).to eq 0
+  it "is invalid without a user_id" do
+    expect(FactoryGirl.build(:store_user, user_id: nil).valid?).to be false
   end
 
 end
