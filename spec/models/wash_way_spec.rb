@@ -2,17 +2,38 @@ require 'rails_helper'
 
 RSpec.describe WashWay, type: :model do
 
-  it "has none to begin with" do
-    expect(WashWay.count).to eq 0
+  it "has a valid factory" do
+    expect(FactoryGirl.create(:wash_way).valid?).to be true
   end
 
-  it "has one after adding one" do
-    WashWay.create(cloth_id: 1, title: SecureRandom.hex)
-    expect(WashWay.count).to eq 1
+  it "is invalid without a title" do
+    expect(FactoryGirl.build(:wash_way, title: nil).valid?).to be false
   end
 
-  it "has none after one was created in a previous example" do
-    expect(WashWay.count).to eq 0
+  it "allow duplicate title in different cloth per wash_way" do
+    FactoryGirl.create(:wash_way, title: "wash_way_title", cloth_id: 1)
+    expect(FactoryGirl.build(:wash_way, title: "wash_way_title", cloth_id: 2).valid?).to be true
+  end
+
+  it "does not allow duplicate title in same cloth per wash_way" do
+    FactoryGirl.create(:wash_way, title: "wash_way_title", cloth_id: 1)
+    expect(FactoryGirl.build(:wash_way, title: "wash_way_title", cloth_id: 1).valid?).to be false
+  end
+
+  it "is invalid without a price" do
+    expect(FactoryGirl.build(:wash_way, price: nil).valid?).to be false
+  end
+
+  it "price is BigDecimal" do
+    expect(FactoryGirl.build(:wash_way).price).to be_kind_of(BigDecimal)
+  end
+
+  it "is invalid when price greater than 10000" do
+    expect(FactoryGirl.build(:wash_way, price: 5000000).valid?).to be false
+  end
+
+  it "is invalid when price less than 0" do
+    expect(FactoryGirl.build(:wash_way, price: -50).valid?).to be false
   end
 
 end
