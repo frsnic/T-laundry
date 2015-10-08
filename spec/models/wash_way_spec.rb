@@ -24,10 +24,6 @@ RSpec.describe WashWay, type: :model do
     expect(FactoryGirl.build(:wash_way, price: nil).valid?).to be false
   end
 
-  it "price is BigDecimal" do
-    expect(FactoryGirl.build(:wash_way).price).to be_kind_of(BigDecimal)
-  end
-
   it "is invalid when price greater than 10000" do
     expect(FactoryGirl.build(:wash_way, price: 5000000).valid?).to be false
   end

@@ -17,7 +17,7 @@ RSpec.describe User do
   it "change user's role will not be reover (default is client)" do
     user = FactoryGirl.create(:user)
     user.update(role: User.roles[:admin])
-    expect(user.role).to eq "admi1n"
+    expect(user.role).to eq "admin"
   end
 
 end

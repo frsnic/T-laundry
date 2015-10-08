@@ -22,10 +22,6 @@ RSpec.describe Client, type: :model do
     expect(FactoryGirl.build(:client, balance: nil).valid?).to be false
   end
 
-  it "balance is BigDecimal" do
-    expect(FactoryGirl.build(:client).balance).to be_kind_of(BigDecimal)
-  end
-
   it "is invalid when balance greater than 100000" do
     expect(FactoryGirl.build(:client, balance: 5000000).valid?).to be false
   end
