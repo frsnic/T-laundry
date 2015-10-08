@@ -2,27 +2,22 @@ require "rails_helper"
 
 RSpec.describe User do
 
-  it "has none to begin with" do
-    expect(User.count).to eq 0
+  it "has a valid factory" do
+    expect(FactoryGirl.create(:user).valid?).to be true
   end
 
-  it "has one after adding one" do
-    random_string = SecureRandom.hex
-    User.create({
-      email: random_string + '@gmail.com',
-      password: random_string,
-      password_confirmation: random_string,
-      name: random_string
-    })
-    expect(User.count).to eq 1
+  it "is invalid without a name" do
+    expect(FactoryGirl.build(:user, name: nil).valid?).to be false
   end
 
-  it "has none after one was created in a previous example" do
-    expect(User.count).to eq 0
-  end
-
-  it "new default role should be client" do
+  it "new record default role should be client" do
     expect(User.new.role).to eq "client"
+  end
+
+  it "change user's role will not be reover (default is client)" do
+    user = FactoryGirl.create(:user)
+    user.update(role: User.roles[:admin])
+    expect(user.role).to eq "admi1n"
   end
 
 end
