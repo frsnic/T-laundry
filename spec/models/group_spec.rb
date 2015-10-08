@@ -19,10 +19,6 @@ RSpec.describe Group, type: :model do
     expect(FactoryGirl.build(:group, precision: nil).valid?).to be false
   end
 
-  it "precision is integer" do
-    expect(FactoryGirl.build(:group).precision).to be_an(Integer)
-  end
-
   it "is invalid when precision < 0" do
     expect(FactoryGirl.build(:group, precision: -1).valid?).to be false
   end
