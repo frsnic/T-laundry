@@ -11,20 +11,24 @@ RSpec.describe Group, type: :model do
   end
 
   it "does not allow duplicate title per group" do
-    FactoryGirl.create(:group, title: "785-555-1234")
-    expect(FactoryGirl.build(:group, title: "785-555-1234").valid?).to be false
+    FactoryGirl.create(:group, title: "group_title")
+    expect(FactoryGirl.build(:group, title: "group_title").valid?).to be false
   end
 
   it "is invalid without a precision" do
     expect(FactoryGirl.build(:group, precision: nil).valid?).to be false
   end
 
+  it "precision is integer" do
+    expect(FactoryGirl.build(:group).precision).to be_an(Integer)
+  end
+
   it "is invalid when precision < 0" do
-    expect(FactoryGirl.build( :group, precision: -1).valid?).to be false
+    expect(FactoryGirl.build(:group, precision: -1).valid?).to be false
   end
 
   it "is invalid when precision > 2" do
-    expect(FactoryGirl.build( :group, precision: 3).valid?).to be false
+    expect(FactoryGirl.build(:group, precision: 3).valid?).to be false
   end
 
 end

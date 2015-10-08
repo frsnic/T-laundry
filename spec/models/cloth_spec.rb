@@ -15,13 +15,13 @@ RSpec.describe Cloth, type: :model do
   end
 
   it "allow duplicate title in different stores per cloth" do
-    FactoryGirl.create(:cloth, title: "785-555-1234", store_id: 1)
-    expect(FactoryGirl.build( :cloth, title: "785-555-1234", store_id: 2).valid?).to be true
+    FactoryGirl.create(:cloth, title: "cloth_title", store_id: 1)
+    expect(FactoryGirl.build(:cloth, title: "cloth_title", store_id: 2).valid?).to be true
   end
 
   it "does not allow duplicate title in same store per cloth" do
-    FactoryGirl.create(:cloth, title: "785-555-1234", store_id: 1)
-    expect(FactoryGirl.build(:cloth, title: "785-555-1234", store_id: 1).valid?).to be false
+    FactoryGirl.create(:cloth, title: "cloth_title", store_id: 1)
+    expect(FactoryGirl.build(:cloth, title: "cloth_title", store_id: 1).valid?).to be false
   end
 
 end

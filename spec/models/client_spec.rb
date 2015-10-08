@@ -27,17 +27,17 @@ RSpec.describe Client, type: :model do
   end
 
   it "balance less than 100000" do
-    expect(FactoryGirl.build(:client, balance: 1000000).valid?).to be false
+    expect(FactoryGirl.build(:client, balance: 5000000).valid?).to be false
   end
 
   it "allow duplicate phone numbers in different stores per client" do
     FactoryGirl.create(:client, phone: "785-555-1234", store_id: 1)
-    expect(FactoryGirl.build( :client, phone: "785-555-1234", store_id: 2).valid?).to be true
+    expect(FactoryGirl.build(:client, phone: "785-555-1234", store_id: 2).valid?).to be true
   end
 
   it "does not allow duplicate phone numbers in same store per client" do
     FactoryGirl.create(:client, phone: "785-555-1234", store_id: 1)
-    expect(FactoryGirl.build( :client, phone: "785-555-1234", store_id: 1).valid?).to be false
+    expect(FactoryGirl.build(:client, phone: "785-555-1234", store_id: 1).valid?).to be false
   end
 
 end
