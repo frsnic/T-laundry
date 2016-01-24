@@ -151,5 +151,6 @@ Store.all.each do |store|
       item.status       = [*(0..2)].sample
       item.save
     end
+    order.update(price: order.order_items.sum(:price))
   end
 end
