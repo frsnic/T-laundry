@@ -10,6 +10,7 @@ class OrdersController < ApplicationController
   def new
     @order = @store.orders.new
     @order.client = find_client(params[:client_id])
+    @cloths = @store.cloths.includes(:wash_ways)
   end
 
   def create

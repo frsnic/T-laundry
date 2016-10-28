@@ -9,8 +9,8 @@
       </thead>
       <tbody>
         <tr>
-          <td class="col-md-4">
-            <%= select_tag "new_cloth_title", options_for_select(@store.group.cloths.pluck(:title)), class: "form-control" %>
+          <td class="col-md-8">
+            <%# select_tag "new_cloth_title", grouped_options_for_select(store_cloth_wash_ways(@cloths), nil), class: "form-control" %>
           </td>
           <td class="col-md-2">
             <%= number_field_tag :new_price, 0, min: 0, class: "form-control" %>
@@ -40,7 +40,7 @@
     <div class="form-group">
       <%= f.label :price, class: "col-md-2 control-label" %>
       <div class="col-md-10">
-        <%= f.number_field :price, class: "form-control", required:  true, min: 0 %>
+        <%= f.number_field :price, class: "form-control", required: true, min: 0 %>
       </div>
     </div>
 
