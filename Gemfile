@@ -60,6 +60,8 @@ group :development do
   gem "capistrano", require: false
   gem "capistrano-rvm", require: false
   gem "capistrano-rails", require: false
+
+  gem 'quiet_assets'
 end
 
 gem 'devise'
@@ -82,4 +84,4 @@ gem 'awesome_print'
 
 gem 'annotate'
 
-gem 'quiet_assets', group: :development
+gem 'active_model_serializers'
