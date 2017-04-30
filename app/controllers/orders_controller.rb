@@ -12,15 +12,40 @@ class OrdersController < ApplicationController
     @order.client = find_client(params[:client_id])
   end
 
+  # {
+  #              "id" => 41,
+  #        "store_id" => 1,
+  #       "client_id" => 1,
+  #           "price" => 123.0,
+  #         "user_id" => 1,
+  #     "order_items" => [
+  #         [0] #<OrderItem:0x007ffa58c2b500> {
+  #                      :id => 113,
+  #                :order_id => 41,
+  #             :category_id => 22,
+  #        :category_item_id => 33,
+  #                   :price => 123.0,
+  #                  :status => "processing",
+  #              :fetched_at => nil,
+  #                :wash_way => "水洗"
+  #         }
+  #     ]
+  # }
   def create
     @order = @store.orders.build(order_params)
     @order.user_id = current_user.id
     @order.client  = find_client(@order.client_id)
 
     if @order.save
-      redirect_to store_order_path(@store, @order), notice: '新增訂單成功'
+      respond_to do |format|
+        format.html { redirect_to store_order_path(@store, @order), notice: '新增訂單成功' }
+        format.json { render json: @order, is_success: true }
+      end
     else
-      render :new
+      respond_to do |format|
+        format.html
+        format.json { render json: @order, is_success: false }
+      end
     end
   end
 
@@ -32,10 +57,16 @@ class OrdersController < ApplicationController
     @order = @store.orders.find(params[:id])
     @order.client = find_client(@order.client_id)
 
-    if @order.update(order_params)
-      redirect_to store_order_path(@store, @order), notice: "修改訂單成功"
+    if @order.save
+      respond_to do |format|
+        format.html { redirect_to store_order_path(@store, @order), notice: '修改訂單成功' }
+        format.json { render json: @order, is_success: true }
+      end
     else
-      render :edit
+      respond_to do |format|
+        format.html
+        format.json { render json: @order, is_success: false }
+      end
     end
   end
 
