@@ -77,3 +77,5 @@ gem 'ransack'
 gem 'will_paginate'
 
 gem 'exception_notification'
+
+gem 'awesome_print'

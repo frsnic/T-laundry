@@ -41,6 +41,7 @@ GEM
     autoprefixer-rails (6.3.1)
       execjs
       json
+    awesome_print (1.7.0)
     bcrypt (3.1.10)
     binding_of_caller (0.7.2)
       debug_inspector (>= 0.0.1)
@@ -248,6 +249,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  awesome_print
   bootstrap-sass
   bullet
   byebug
@@ -280,4 +282,4 @@ DEPENDENCIES
   will_paginate
 
 BUNDLED WITH
-   1.10.6
+   1.14.6
