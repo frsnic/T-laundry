@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   get 'errors/error404'
 
-  devise_for :users
+  devise_for :users, controllers: { sessions: 'users/sessions' }
 
   namespace :account do
     resources :groups
