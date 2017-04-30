@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: groups
+#
+#  id         :integer          not null, primary key
+#  title      :string           not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#  precision  :integer          default(2), not null
+#
+
 class Group < ActiveRecord::Base
   has_many :group_users, dependent: :destroy
   has_many :group_managers, through: :group_users, source: :user

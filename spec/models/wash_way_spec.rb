@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: wash_ways
+#
+#  id         :integer          not null, primary key
+#  cloth_id   :integer          not null
+#  title      :string           not null
+#  price      :decimal(8, 2)    default(0.0), not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 require 'rails_helper'
 
 RSpec.describe WashWay, type: :model do

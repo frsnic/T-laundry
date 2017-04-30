@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: orders
+#
+#  id         :integer          not null, primary key
+#  store_id   :integer          not null
+#  client_id  :integer          not null
+#  price      :decimal(8, 2)    default(0.0), not null
+#  user_id    :integer          not null
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Order < ActiveRecord::Base
   belongs_to :store
   belongs_to :client
