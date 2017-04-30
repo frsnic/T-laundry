@@ -81,3 +81,5 @@ gem 'exception_notification'
 gem 'awesome_print'
 
 gem 'annotate'
+
+gem 'quiet_assets', group: :development
