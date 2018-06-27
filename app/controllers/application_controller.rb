@@ -7,6 +7,8 @@ class ApplicationController < ActionController::Base
   before_filter :configure_permitted_parameters, if: :devise_controller?
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  before_action :login_do
+
   protected
 
   def configure_permitted_parameters
@@ -30,6 +32,10 @@ class ApplicationController < ActionController::Base
 
   def user_not_authorized
     render "errors/error", status: :forbidden
+  end
+
+  def login_do
+    Rails.logger.info "session[:current_user_id] #{session[:current_user_id]}"
   end
 
 end
