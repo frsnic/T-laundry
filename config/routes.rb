@@ -4,10 +4,15 @@ Rails.application.routes.draw do
 
   devise_for :users, controllers: { sessions: 'users/sessions' }
 
+  resources :users, only: %i(show)
+
   namespace :account do
     resources :groups
     resources :stores
   end
+
+  resources :stores
+  resources :managers, :controller => "group_managers"
 
   resources :groups do
     resources :stores

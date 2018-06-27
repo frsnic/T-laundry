@@ -5,6 +5,8 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
   before_filter :configure_permitted_parameters, if: :devise_controller?
+  after_filter  :set_csrf_cookie_for_ng
+
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   before_action :login_do
@@ -12,11 +14,16 @@ class ApplicationController < ActionController::Base
   protected
 
   def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation) }
-    devise_parameter_sanitizer.for(:account_update) { |u| u.permit(:name, :email, :password, :password_confirmation, :current_password) }
+    added_attrs = %i(name email password password_confirmation remember_me)
+    devise_parameter_sanitizer.permit :sign_up, keys: added_attrs
+    devise_parameter_sanitizer.permit :account_update, keys: added_attrs + %i(current_password)
   end
 
   private
+
+  def authenticate_user!
+    render json: { is_login: false } unless current_user
+  end
 
   def authorize_admin!
     authorize Group, :admin?
@@ -36,6 +43,10 @@ class ApplicationController < ActionController::Base
 
   def login_do
     Rails.logger.info "session[:current_user_id] #{session[:current_user_id]}"
+  end
+
+  def set_csrf_cookie_for_ng
+    cookies['XSRF-TOKEN'] = form_authenticity_token if protect_against_forgery?
   end
 
 end
